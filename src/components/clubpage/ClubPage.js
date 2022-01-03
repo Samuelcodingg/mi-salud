@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import logo from './image 3.png';
 import logoLt from './image 4.png';
 import saly from './Saly-22.png';
@@ -19,10 +21,15 @@ export const ClubPage = () => {
                                 Inscríbite gratis a Club MiSalud y obtén precios exclusivos y beneficios adicionales para ti y tu familia.
                             </p>
                             <div className='d-sm-flex justify-content-evenly'>
-                                <button className='boton w-little border-little fs-5 btn-rounded bg-white fw-bold btn-size'>
-                                    ¿No eres parte de Club <br /> MiSalud?
-                                    Regístrate aquí
-                                </button>
+                                <Link
+                                    to='/registro-club'
+                                >
+                                    <button className='boton w-little border-little fs-5 btn-rounded bg-white fw-bold btn-size'>
+                                        ¿No eres parte de Club <br /> MiSalud?
+                                        Regístrate aquí
+                                    </button>
+                                </Link>
+                                
                                 <button className='boton w-little border-little  mt-4 mt-sm-0  fs-5 btn-rounded bg-white fw-bold btn-size'>
                                     ¿Estás en Club MiSalud? <br />
                                     Actualiza tus datos
@@ -48,9 +55,13 @@ export const ClubPage = () => {
                             Es el programa de fidelización de MiSalud que busca premiar a nuestros clientes por preferirnos. Para disfrutar de este beneficio, inscríbete y sumarás SaludPuntos por cada compra que realices.
                         </p>
                         <div className='d-inline d-sm-flex justify-content-evenly '>
-                            <button className='bg-principal boton btn-rounded text-white px-5 w-little border-little'>
-                                Inscríbete a Club MiSalud
-                            </button>
+                            <Link
+                                to='/registro-club'
+                            >
+                                <button className='bg-principal boton btn-rounded text-white px-5 w-little border-little'>
+                                    Inscríbete a Club MiSalud
+                                </button>
+                            </Link>
                             <button className='boton btn-rounded color-principal border-principal bg-white w-little mt-4 mt-sm-0 border-little px-4'>
                                 Ya soy miembro de Club MiSalud
                             </button>
