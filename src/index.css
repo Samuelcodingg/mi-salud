@@ -59,6 +59,10 @@ body {
   height: 400px;
 }
 
+.align-self-end {
+  align-self: flex-end;
+}
+
 @media (max-width: 576px) {
   .w-little {
     width: 100%;
