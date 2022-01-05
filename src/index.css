@@ -79,6 +79,35 @@ body {
   width: calc(98% - 250px);
 }
 
+
+.popup-box{
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-box > *{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.ocultar{
+  display: none;
+}
+
+.btn-cerrar{
+  border: 0;
+  background-color: rgba(0, 0, 0, 0.0);
+  width: 20px;
+  height: 20px;
+}
+
 @media (max-width: 576px) {
   .w-little {
     width: 100%;

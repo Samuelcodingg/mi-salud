@@ -56,7 +56,7 @@ export const MembresiaPremiun = () => {
                 </div>
                 <div className='text-center'>
                     <button
-                        className='bg-principal boton btn-rounded text-white px-5 w-little border-little'
+                        className='bg-principal boton btn-rounded text-white px-5 w-little border-little btn-aquirir-membresia'
                     >
                         Adquirir membresía
                     </button>
@@ -119,7 +119,7 @@ export const MembresiaPremiun = () => {
                 </div>
                 <div className='text-center'>
                     <button
-                        className='bg-principal boton btn-rounded text-white px-5 w-little border-little'
+                        className='bg-principal boton btn-rounded text-white px-5 w-little border-little btn-aquirir-membresia'
                     >
                         Adquirir membresía
                     </button>

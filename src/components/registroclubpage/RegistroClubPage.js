@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MembresiaPremiun } from './MembresiaPremiun';
 import { MembresiaEstandar } from './MembresiaEstandar';
 import tshirtAndCircle from './tshirtAndCircle.png';
+import { PopUpPago } from './PopUpPago';
 
 export const RegistroClubPage = () => {
 
@@ -49,6 +50,9 @@ export const RegistroClubPage = () => {
                 {/* Ingresar en el '' componente membresia estandar */}
                 { tipoMembresia === '1' ? <MembresiaPremiun /> : <MembresiaEstandar/> }
             </div>
+            <div className='popup-box ocultar'>
+                <PopUpPago/>
+            </div>    
         </div>
     )
 }

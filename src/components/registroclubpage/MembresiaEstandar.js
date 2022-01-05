@@ -5,6 +5,7 @@ import logo3 from './icons/logoNotificaciones.svg';
 
 
 export const MembresiaEstandar = () => {
+
     return (
         <div className='container'>
             <div className='row'>
@@ -35,7 +36,7 @@ export const MembresiaEstandar = () => {
             </div>
             <div className='text-center m-5'>
                     <button
-                        className='bg-principal boton btn-rounded text-white px-5 w-little border-little'
+                        className='bg-principal boton btn-rounded text-white px-5 w-little border-little btn-aquirir-membresia'
                     >
                         Adquirir membresía
                     </button>
