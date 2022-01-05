@@ -1,7 +1,7 @@
 import React from 'react';
-import logo1 from './membresiaIcons/logoSaludPuntos.svg';
-import logo2 from './membresiaIcons/logoCupones.svg';
-import logo3 from './membresiaIcons/logoNotificaciones.svg';
+import logo1 from './icons/logoSaludPuntos.svg';
+import logo2 from './icons/logoCupones.svg';
+import logo3 from './icons/logoNotificaciones.svg';
 
 
 export const MembresiaEstandar = () => {
