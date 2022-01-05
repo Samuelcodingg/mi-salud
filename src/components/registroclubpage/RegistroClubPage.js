@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MembresiaPremiun } from './MembresiaPremiun';
+import { MembresiaEstandar } from './MembresiaEstandar';
 import tshirtAndCircle from './tshirtAndCircle.png';
 
 export const RegistroClubPage = () => {
@@ -46,7 +47,7 @@ export const RegistroClubPage = () => {
                     </div>
                 </div>
                 {/* Ingresar en el '' componente membresia estandar */}
-                { tipoMembresia === '1' ? <MembresiaPremiun /> : '' }
+                { tipoMembresia === '1' ? <MembresiaPremiun /> : <MembresiaEstandar/> }
             </div>
         </div>
     )
