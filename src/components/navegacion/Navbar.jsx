@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavbarComponent } from './NavbarComponent';
+import '../../index.css';
 import  imgLogo  from './Logo-misalud.png';
 import imgIconUbi from './ubicacion-icon.png';
 import imgLogin from './Login-icon.png';
@@ -11,12 +12,12 @@ const Navbar = () =>{
         <React.Fragment>
             <div  className="bg-white">
                 <nav class="">
-                    <div class=" d-flex justify-content-between mx-3">
+                    <div class=" d-flex justify-content-between mx-2">
                         <div className='d-flex align-self-center'>
                             <a href="#">
                                 <img src={imgLogo} alt="" />
                             </a>
-                            <div className='align-self-center'>
+                            <div className='align-self-center direc'>
                                 <a href="#" className='txt-log-nav'> 
                                     <img src={imgIconUbi} alt="" /><span className='mx-2'>Ingresa tu dirección</span>
                                 </a>
@@ -30,13 +31,13 @@ const Navbar = () =>{
                         </div>
 
                         <div className='d-flex'>
-                            <div className='align-self-center'>
+                            <div className='align-self-center mx-2'>
                                 <a href="#" className='txt-log-nav'>
                                     <img src={imgLogin} alt="" /><span className='mx-2'>Iniciar sesión</span>
                                 </a>
                             </div>
 
-                            <div className='align-self-center'>
+                            <div className='align-self-center mx-2'>
                                 <a href="#" className='txt-log-nav '>
                                     <img src={imgCart} alt="" /><span className='mx-2 '>Mi carrito</span>
                                 </a>
