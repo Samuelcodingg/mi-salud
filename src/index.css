@@ -79,6 +79,13 @@ body {
   width: calc(98% - 250px);
 }
 
+.hide-arrows::-webkit-inner-spin-button,
+.hide-arrows::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @media (max-width: 576px) {
   .w-little {
     width: 100%;
