@@ -106,6 +106,14 @@ body {
   background-color: rgba(0, 0, 0, 0.0);
   width: 20px;
   height: 20px;
+
+}
+
+.hide-arrows::-webkit-inner-spin-button,
+.hide-arrows::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 @media (max-width: 576px) {
@@ -122,12 +130,71 @@ body {
   .shape-container{
   width: 135px;
   height: 150px;
+}}
+
+/*Navbar*/
+.bg-white{
+  background-color: #FFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
 }
+
+.mg-left{
+  margin-left: 2.5rem;
+}
+
+.txt-cat{
+  text-decoration: none !important;
+  font-family: Inter !important;
+  font-style: normal !important; 
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  line-height: 20px !important;
+  color: black !important;
+}
+
+.txt-log-nav{
+  text-decoration: none;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  color: #7D7D7D;
+}
+
+.txt-nav{
+  text-decoration: none;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: black;
+}
+
+.bg-nav{
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  padding: 0.5rem;
+}
+
+.boton-dropdown{
+  background-color: #FFFF !important;
+  border: none !important;
+}
+
+.direc{
+  padding-top: 0.5rem;
+}
+
 
 .text-container{
   width: calc(98% - 180px);
 }
-}
+
+
 
 
 /* clubpage */
