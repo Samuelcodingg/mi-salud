@@ -10,6 +10,7 @@ import { HomePage } from '../components/homepage/HomePage';
 import Navbar from '../components/navegacion/Navbar';
 import { NosotrosPage } from '../components/nosotrospage/NosotrosPage';
 import { RegistroClubPage } from '../components/registroclubpage/RegistroClubPage';
+import {CatalogoPage} from '../components/catalogopage/CatalogoPage'
 
 export const AppRouter = () => {
     return (
@@ -21,7 +22,8 @@ export const AppRouter = () => {
                     <Route exact path="/club" component={ClubPage} />
                     <Route exact path="/registro-club" component={RegistroClubPage} />
                     <Route exact path="/nosotros" component={NosotrosPage} />
-                    <Route exact path="/detalles-producto/:id" component={DetailsProductPage} />
+                    <Route exact path="/detalles-producto/:id" component={DetailsProductPage}/> 
+                    <Route exact path="/catalogo-page" component={CatalogoPage}/>
                 </Switch>
             </div>
         </Router>
