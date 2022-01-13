@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProduct } from '../../helpers/productOperations';
+import { getProduct, getProductsByTipo } from '../../helpers/productOperations';
 import { CardProduct } from '../ui/CardProduct';
 
 import logos_visa from './logos_visa.png';
@@ -24,6 +24,8 @@ export const DetailsProductPage = () => {
 
     const [amount, setAmount] = useState(1);
 
+    const [relacionados, setRelacionados] = useState([]);
+
     const handleChange = name => event => {
         setAmount(event.target.value);
     };
@@ -31,7 +33,12 @@ export const DetailsProductPage = () => {
     useEffect(() => {
         const product = getProduct(id);
         setProduct(product);
-    },[]);
+
+        const relacionados = getProductsByTipo(product.tipo);
+        setRelacionados(relacionados);
+        console.log(relacionados);
+
+    }, []);
 
     return (
         <div className='container'>
@@ -51,20 +58,20 @@ export const DetailsProductPage = () => {
                             <div className='container'>
                                 <div className='row'>
                                     <div className='col-5 d-flex'>
-                                        <button 
+                                        <button
                                             className='boton border border-dark py-0 px-3'
-                                            onClick={() => setAmount(amount - 1)}    
+                                            onClick={() => setAmount(amount - 1)}
                                         >
                                             -
-                                        </button>    
+                                        </button>
                                         <input type='number' className='form-control border border-dark  border-start-0 border-end-0 rounded-0 text-center hide-arrows' value={amount} onChange={handleChange('amount')}></input>
-                                        <button 
+                                        <button
                                             className='boton border border-dark py-0 px-3'
                                             onClick={() => setAmount(amount + 1)}
                                         >
                                             +
                                         </button>
-                                    </div>        
+                                    </div>
                                     <div className='col-7'>
                                         <button className="btn btn-danger w-100">
                                             Agregar al carrito &nbsp;
@@ -81,46 +88,20 @@ export const DetailsProductPage = () => {
                 <h3 className='border-dark border-bottom pb-2 mb-4'>Productos relacionados</h3>
                 <div className='container'>
                     <div className='row'>
-                        <div className='col-sm-3'>
-                            <CardProduct
-                                borderColor={'#000000'}
-                                img={smallImg}
-                                title={name}
-                                titleColor={'#00B1A9'}
-                                price={price}
-                                btnColor={'danger'}
-                            />
-                        </div>
-                        <div className='col-sm-3'>
-                            <CardProduct
-                                borderColor={'#000000'}
-                                img={smallImg}
-                                title={name}
-                                titleColor={'#00B1A9'}
-                                price={price}
-                                btnColor={'danger'}
-                            />
-                        </div>
-                        <div className='col-sm-3'>
-                            <CardProduct
-                                borderColor={'#000000'}
-                                img={smallImg}
-                                title={name}
-                                titleColor={'#00B1A9'}
-                                price={price}
-                                btnColor={'danger'}
-                            />
-                        </div>
-                        <div className='col-sm-3'>
-                            <CardProduct
-                                borderColor={'#000000'}
-                                img={smallImg}
-                                title={name}
-                                titleColor={'#00B1A9'}
-                                price={price}
-                                btnColor={'danger'}
-                            />
-                        </div>
+                        {
+                            relacionados.slice(0, 4).map(product => (
+                                <div className='col-sm-3'>
+                                    <CardProduct
+                                        key={product.id}
+                                        img={product.smallImg}
+                                        title={product.name}
+                                        titleColor={'#00B1A9'}
+                                        price={product.price}
+                                        btnColor={'danger'}
+                                    />
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
             </div>
@@ -134,7 +115,7 @@ export const DetailsProductPage = () => {
                         <div className='col-sm-2 mx-auto'>
                             <img src={logos_visa} alt='visa' className='img-fluid'></img>
                         </div>
-                        <div className='col-sm-2 mx-auto'> 
+                        <div className='col-sm-2 mx-auto'>
                             <img src={logos_mastercard} alt='mastercard' className='img-fluid'></img>
                         </div>
                         <div className='col-sm-2 mx-auto'>
