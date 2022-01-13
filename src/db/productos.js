@@ -3,7 +3,7 @@ export const productos = [
         "id": "1",
         "name": "Pañales Pampers",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-        "price": "S/. 10.00",
+        "price": "S/. 50.00",
         "bigImg": "pampersBig",
         "smallImg": "pampersSmall",
         "tipo": "infantil"
@@ -223,5 +223,104 @@ export const productos = [
         "bigImg": "aspirinaBig",
         "smallImg": "aspirinaSmall",
         "tipo": "general"
+    },
+    {
+        "id": "26",
+        "name": "Pañales Babysec",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "price": "S/. 45.00",
+        "bigImg": "babysecBig",
+        "smallImg": "babysecSmall",
+        "tipo": "infantil"
+    },
+    {
+        "id": "27",
+        "name": "Toallitas Húmedas Huggies",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "price": "S/. 25.00",
+        "bigImg": "toallitasHuggiesBig",
+        "smallImg": "toallitasHuggiesSmall",
+        "tipo": "infantil"
+    },
+    {
+        "id": "28",
+        "name": "Shampoo Baby's Johnsons",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "price": "S/. 25.00",
+        "bigImg": "shampooBabyJBig",
+        "smallImg": "shampooBabyJSmall",
+        "tipo": "infantil"
+    },
+    {
+        "id": "29",
+        "name": "Pañales Huggies",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "price": "S/. 54.00",
+        "bigImg": "pañalesHuggiesBig",
+        "smallImg": "pañalesHuggiesSmall",
+        "tipo": "infantil"
+    },
+    {
+        "id": "30",
+        "name": "Gel Dental Denture BB",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "price": "S/. 12.00",
+        "bigImg": "gelDentalDentureBig",
+        "smallImg": "gelDentalDentureSmall",
+        "tipo": "infantil"
+    },
+    {
+        "id": "31",
+        "name": "Hisopos Tuinies",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "price": "S/. 10.00",
+        "bigImg": "hisoposTuiniesBig",
+        "smallImg": "hisoposTuiniesSmall",
+        "tipo": "infantil"
+    },
+    {
+        "id": "32",
+        "name": "Crema Dr Zaidman",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "price": "S/. 22.00",
+        "bigImg": "cremaDrZaidmanBig",
+        "smallImg": "cremaDrZaidmanSmall",
+        "tipo": "infantil"
+    },
+    {
+        "id": "33",
+        "name": "Aceite Baby's Johnson",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "price": "S/. 24.00",
+        "bigImg": "aceiteBabyJBig",
+        "smallImg": "aceiteBabyJSmall",
+        "tipo": "infantil"
+    },
+    {
+        "id": "34",
+        "name": "Crema Dental para Niños Colgate",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "price": "S/. 12.00",
+        "bigImg": "cremaDentalKidColgateBig",
+        "smallImg": "cremaDentalKidColgateSmall",
+        "tipo": "infantil"
+    },
+    {
+        "id": "35",
+        "name": "Toallitas Húmedas Pampers",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "price": "S/. 25.00",
+        "bigImg": "toallitasHumedasPampersBig",
+        "smallImg": "toallitasHumedasPampersSmall",
+        "tipo": "infantil"
+    },
+    {
+        "id": "36",
+        "name": "Talco Dr Zaidman",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "price": "S/. 24.00",
+        "bigImg": "talcoDrZaidmanBig",
+        "smallImg": "talcoDrZaidmanSmall",
+        "tipo": "infantil"
     }
 ]

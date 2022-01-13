@@ -98,6 +98,7 @@ export const DetailsProductPage = () => {
                                         titleColor={'#00B1A9'}
                                         price={product.price}
                                         btnColor={'danger'}
+                                        borderColor={'#000000'}
                                     />
                                 </div>
                             ))
