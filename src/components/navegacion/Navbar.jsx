@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavbarComponent } from './NavbarComponent';
 import '../../index.css';
-import  imgLogo  from './Logo-misalud.png';
+import imgLogo from './Logo-misalud.png';
 import imgIconUbi from './ubicacion-icon.png';
 import imgLogin from './Login-icon.png';
 import imgCart from './mdi_cart.png';
+import logoLogin from './logoLogin.png';
 import { Link } from 'react-router-dom';
 
 
-const Navbar = () =>{
+const Navbar = () => {
+
+    const [loginOpened, setLoginOpened] = useState(false);
+
     return (
         <React.Fragment>
-            <div  className="bg-white">
+            <div className="bg-white">
                 <nav class="">
                     <div class=" d-flex justify-content-between mx-2">
                         <div className='d-flex align-self-center'>
@@ -19,7 +23,7 @@ const Navbar = () =>{
                                 <img src={imgLogo} alt="" />
                             </Link>
                             <div className='align-self-center direc'>
-                                <a href="#" className='txt-log-nav'> 
+                                <a href="#" className='txt-log-nav'>
                                     <img src={imgIconUbi} alt="" /><span className='mx-2'>Ingresa tu dirección</span>
                                 </a>
                             </div>
@@ -33,9 +37,33 @@ const Navbar = () =>{
 
                         <div className='d-flex'>
                             <div className='align-self-center mx-2'>
-                                <a href="#" className='txt-log-nav'>
+                                <a 
+                                    href="#" 
+                                    className='txt-log-nav'
+                                    onClick={() => setLoginOpened(!loginOpened)}
+                                >
                                     <img src={imgLogin} alt="" /><span className='mx-2'>Iniciar sesión</span>
                                 </a>
+                                {
+                                    loginOpened ?
+                                        <div className='p-5 text-center position-absolute bg-white login-div'>
+                                            <img src={logoLogin} alt="logoLogin" />
+                                            <form>
+                                                <div className='form-group'>
+                                                    <p>Iniciar Sesión</p>
+                                                    <input type="email" className="form-control btn-rounded" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electrónico"></input>
+                                                </div>
+                                                <div className='form-group mt-4'>
+                                                    <input type="password" className="form-control btn-rounded" id="exampleInputPassword1" placeholder="Contraseña"></input>
+                                                </div>
+                                                <div className='form-group mt-4'>
+                                                    <button type="submit" className="boton btn-rounded bg-principal text-white w-100">Iniciar Sesión</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        :
+                                        ''
+                                }
                             </div>
 
                             <div className='align-self-center mx-2'>
@@ -44,10 +72,10 @@ const Navbar = () =>{
                                 </a>
                             </div>
                         </div>
-                        
+
                     </div>
                 </nav>
-                <NavbarComponent/>
+                <NavbarComponent />
             </div>
         </React.Fragment>
     )
