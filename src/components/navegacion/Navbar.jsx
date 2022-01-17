@@ -7,7 +7,7 @@ import imgLogin from './Login-icon.png';
 import imgCart from './mdi_cart.png';
 import logoLogin from './logoLogin.png';
 import { Link } from 'react-router-dom';
-import { getUserByEmailAndPassword, isAuthenticated } from '../../helpers/userOperations';
+import { getUserByEmailAndPassword, isAuthenticated, registerUser } from '../../helpers/userOperations';
 
 
 const Navbar = () => {
@@ -17,12 +17,25 @@ const Navbar = () => {
     const [valuesLogin, setValuesLogin] = useState({
         email: '',
         password: ''
-    })
+    });
+    const [valuesRegister, setValuesRegister] = useState({
+        email: '',
+        password: '',
+        nombre: '',
+        ap_paterno: '',
+        ap_materno: '',
+        celular: '',
+        dni: ''
+    });
 
     const { nombre, ap_paterno } = isAuthenticated();
 
     const handleChange = name => event => {
         setValuesLogin({ ...valuesLogin, [name]: event.target.value });
+    };
+
+    const handleChangeRegister = name => event => {
+        setValuesRegister({ ...valuesRegister, [name]: event.target.value });
     };
 
     const clickLogin = (e) => {
@@ -32,6 +45,13 @@ const Navbar = () => {
             localStorage.setItem('user', JSON.stringify(user));
             window.location.reload();
         }
+    }
+
+    const clickRegister = (e) => {
+        e.preventDefault();
+        registerUser(valuesRegister);
+        localStorage.setItem('user', JSON.stringify(valuesRegister));
+        window.location.reload();
     }
 
     const cerrarSesion = () => {
@@ -169,35 +189,82 @@ const Navbar = () => {
                                                     </div>
                                                     <div className='col-md-6'>
                                                         <div className='form-group'>
-                                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Número de documento"></input>
+                                                            <input 
+                                                                type="text" 
+                                                                className="form-control" 
+                                                                placeholder="Número de documento"
+                                                                value={valuesRegister.dni}
+                                                                onChange={handleChangeRegister('dni')}
+                                                            ></input>
                                                         </div>
                                                     </div>
                                                     <div className='col-md-6'>
                                                         <div className='form-group mt-4'>
-                                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electrónico"></input>
+                                                            <input 
+                                                                type="text" 
+                                                                className="form-control" 
+                                                                placeholder="Correo electrónico"
+                                                                value={valuesRegister.email}
+                                                                onChange={handleChangeRegister('email')}
+                                                            ></input>
                                                         </div>
                                                     </div>
                                                     <div className='col-md-6'>
                                                         <div className='form-group mt-4'>
-                                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Número de celular"></input>
+                                                            <input 
+                                                                type="text" 
+                                                                className="form-control" 
+                                                                placeholder="Número de celular"
+                                                                value={valuesRegister.celular}
+                                                                onChange={handleChangeRegister('celular')}
+                                                            ></input>
                                                         </div>
                                                     </div>
                                                     <p className="mt-4">
                                                         Información Personal
                                                     </p>
-                                                    <div className='col-md-12'>
+                                                    <div className='col-md-6'>
                                                         <div className='form-group mt-4'>
-                                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombres"></input>
+                                                            <input 
+                                                                type="text" 
+                                                                className="form-control" 
+                                                                placeholder="Nombres"
+                                                                value={valuesRegister.nombre}
+                                                                onChange={handleChangeRegister('nombre')}
+                                                            ></input>
                                                         </div>
                                                     </div>
                                                     <div className='col-md-6'>
                                                         <div className='form-group mt-4'>
-                                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Apellido paterno"></input>
+                                                            <input 
+                                                                type="text" 
+                                                                className="form-control" 
+                                                                placeholder="Apellido paterno"
+                                                                value={valuesRegister.ap_paterno}
+                                                                onChange={handleChangeRegister('ap_paterno')}
+                                                            ></input>
                                                         </div>
                                                     </div>
                                                     <div className='col-md-6'>
                                                         <div className='form-group mt-4'>
-                                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Apellido materno"></input>
+                                                            <input 
+                                                                type="text" 
+                                                                className="form-control" 
+                                                                placeholder="Apellido materno"
+                                                                value={valuesRegister.ap_materno}
+                                                                onChange={handleChangeRegister('ap_materno')}
+                                                            ></input>
+                                                        </div>
+                                                    </div>
+                                                    <div className='col-md-6'>
+                                                        <div className='form-group mt-4'>
+                                                            <input 
+                                                                type="password" 
+                                                                className="form-control" 
+                                                                placeholder="Contraseña"
+                                                                value={valuesRegister.password}
+                                                                onChange={handleChangeRegister('password')}
+                                                            ></input>
                                                         </div>
                                                     </div>
                                                     <div className='form-group mt-4'>
@@ -205,7 +272,11 @@ const Navbar = () => {
                                                         <label className='form-check-label' for="exampleCheck1">Acepto los términos y condiciones</label>
                                                     </div>
                                                     <div className='form-group mt-4 text-center'>
-                                                        <button type="submit" className="boton btn-rounded bg-principal text-white px-5">Registrarme</button>
+                                                        <button 
+                                                            type="submit" 
+                                                            className="boton btn-rounded bg-principal text-white px-5"
+                                                            onClick={clickRegister}
+                                                        >Registrarme</button>
                                                     </div>
                                                 </div>
                                             </form>

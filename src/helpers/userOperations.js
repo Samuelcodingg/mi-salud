@@ -14,3 +14,7 @@ export const isAuthenticated = () => {
         return false;
     }
 }
+
+export const registerUser = (user) => {
+    usuarios.push(user);
+}
