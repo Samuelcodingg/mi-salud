@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 
     const [loginOpened, setLoginOpened] = useState(false);
+    const [registerOpened, setRegisterOpened] = useState(false);
 
     return (
         <React.Fragment>
@@ -59,8 +60,93 @@ const Navbar = () => {
                                                 <div className='form-group mt-4'>
                                                     <button type="submit" className="boton btn-rounded bg-principal text-white w-100">Iniciar Sesión</button>
                                                 </div>
+                                                <p>¿Aún no tienes una cuenta? <span 
+                                                    className='pointer text-primary text-decoration-underline'
+                                                    onClick={() => {
+                                                        setRegisterOpened(!registerOpened)
+                                                        setLoginOpened(!loginOpened)
+                                                    } }
+                                                    >
+                                                        Regístrate
+                                                    </span> 
+                                                </p>
                                             </form>
                                         </div>
+                                        :
+                                        ''
+                                }
+                                {
+                                    registerOpened ?
+                                        <div className='p-4 fondo-registro position-absolute border border-dark'>   
+                                            <p 
+                                                className='pointer'
+                                                onClick={() => setRegisterOpened(!registerOpened) }
+                                            >
+                                                <i class="fas fa-arrow-left"></i> Volver
+                                            </p>
+                                            <div className='text-center'>
+                                                <img src={logoLogin} alt="logoLogin" />
+                                            </div>
+                                            <form className='container'>
+                                                <div className='row'>
+                                                    <p>
+                                                        Información Esencial
+                                                    </p>
+                                                    <div className='col-md-6'>
+                                                        <div className='form-group'>
+                                                            <select
+                                                                className='form-control'
+                                                            >
+                                                                <option>Tipo de documento</option>
+                                                                <option>DNI</option>
+                                                                <option>Pasaporte</option>
+                                                                <option>Carnet de extranjería</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div className='col-md-6'>
+                                                        <div className='form-group'>
+                                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Número de documento"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div className='col-md-6'>
+                                                        <div className='form-group mt-4'>
+                                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electrónico"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div className='col-md-6'>
+                                                        <div className='form-group mt-4'>
+                                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Número de celular"></input>
+                                                        </div>
+                                                    </div>
+                                                    <p className="mt-4">
+                                                        Información Personal
+                                                    </p>
+                                                    <div className='col-md-12'>
+                                                        <div className='form-group mt-4'>
+                                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombres"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div className='col-md-6'>
+                                                        <div className='form-group mt-4'>
+                                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Apellido paterno"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div className='col-md-6'>
+                                                        <div className='form-group mt-4'>
+                                                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Apellido materno"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div className='form-group mt-4'>
+                                                        <input type="checkbox" className="form-check-input" id="exampleCheck1"></input>
+                                                        <label className='form-check-label' for="exampleCheck1">Acepto los términos y condiciones</label>
+                                                    </div>
+                                                    <div className='form-group mt-4 text-center'>
+                                                        <button type="submit" className="boton btn-rounded bg-principal text-white px-5">Registrarme</button>
+                                                    </div>
+                                                </div>
+                                            </form>                                                    
+                                        </div>  
                                         :
                                         ''
                                 }

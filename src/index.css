@@ -12,6 +12,10 @@ body {
 
 /*utilities*/
 
+.pointer {
+  cursor: pointer;
+}
+
 .bg-principal {
   background-color: #00B1A9;
 }
@@ -225,4 +229,16 @@ body {
 
 .login-div {
   right: 150px;
+}
+
+.fondo-registro {
+  background-image: url('components/navegacion/fondoRegistro.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
 }
