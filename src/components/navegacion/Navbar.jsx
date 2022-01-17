@@ -7,12 +7,37 @@ import imgLogin from './Login-icon.png';
 import imgCart from './mdi_cart.png';
 import logoLogin from './logoLogin.png';
 import { Link } from 'react-router-dom';
+import { getUserByEmailAndPassword, isAuthenticated } from '../../helpers/userOperations';
 
 
 const Navbar = () => {
 
     const [loginOpened, setLoginOpened] = useState(false);
     const [registerOpened, setRegisterOpened] = useState(false);
+    const [valuesLogin, setValuesLogin] = useState({
+        email: '',
+        password: ''
+    })
+
+    const { nombre, ap_paterno } = isAuthenticated();
+
+    const handleChange = name => event => {
+        setValuesLogin({ ...valuesLogin, [name]: event.target.value });
+    };
+
+    const clickLogin = (e) => {
+        e.preventDefault();
+        const user = getUserByEmailAndPassword(valuesLogin.email, valuesLogin.password);
+        if (user) {
+            localStorage.setItem('user', JSON.stringify(user));
+            window.location.reload();
+        }
+    }
+
+    const cerrarSesion = () => {
+        localStorage.removeItem('user');
+        window.location.reload();
+    }
 
     return (
         <React.Fragment>
@@ -38,13 +63,32 @@ const Navbar = () => {
 
                         <div className='d-flex'>
                             <div className='align-self-center mx-2'>
-                                <a 
-                                    href="#" 
-                                    className='txt-log-nav'
-                                    onClick={() => setLoginOpened(!loginOpened)}
-                                >
-                                    <img src={imgLogin} alt="" /><span className='mx-2'>Iniciar sesión</span>
-                                </a>
+                                {
+                                    nombre ?
+                                        <>
+                                            <a
+                                                href="#"
+                                                className='txt-log-nav'
+                                            >
+                                                <img src={imgLogin} alt="" /><span className='mx-2'>{nombre} {ap_paterno}</span>
+                                            </a>
+                                            <a
+                                                href="#"
+                                                className='txt-log-nav'
+                                                onClick={cerrarSesion}
+                                            >
+                                                <span className='mx-2'>Cerrar sesión</span>
+                                            </a>
+                                        </>
+                                        :
+                                        <a
+                                            href="#"
+                                            className='txt-log-nav'
+                                            onClick={() => setLoginOpened(!loginOpened)}
+                                        >
+                                            <img src={imgLogin} alt="" /><span className='mx-2'>Iniciar sesión</span>
+                                        </a>
+                                }
                                 {
                                     loginOpened ?
                                         <div className='p-5 text-center position-absolute bg-white login-div'>
@@ -52,23 +96,42 @@ const Navbar = () => {
                                             <form>
                                                 <div className='form-group'>
                                                     <p>Iniciar Sesión</p>
-                                                    <input type="email" className="form-control btn-rounded" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electrónico"></input>
+                                                    <input
+                                                        type="email"
+                                                        className="form-control btn-rounded"
+                                                        placeholder="Correo electrónico"
+                                                        value={valuesLogin.email}
+                                                        onChange={handleChange('email')}
+                                                    ></input>
                                                 </div>
                                                 <div className='form-group mt-4'>
-                                                    <input type="password" className="form-control btn-rounded" id="exampleInputPassword1" placeholder="Contraseña"></input>
+                                                    <input
+                                                        type="password"
+                                                        className="form-control btn-rounded"
+                                                        placeholder="Contraseña"
+                                                        value={valuesLogin.password}
+                                                        onChange={handleChange('password')}
+                                                    >
+                                                    </input>
                                                 </div>
                                                 <div className='form-group mt-4'>
-                                                    <button type="submit" className="boton btn-rounded bg-principal text-white w-100">Iniciar Sesión</button>
+                                                    <button
+                                                        type="submit"
+                                                        className="boton btn-rounded bg-principal text-white w-100"
+                                                        onClick={clickLogin}
+                                                    >
+                                                        Iniciar Sesión
+                                                    </button>
                                                 </div>
-                                                <p>¿Aún no tienes una cuenta? <span 
+                                                <p>¿Aún no tienes una cuenta? <span
                                                     className='pointer text-primary text-decoration-underline'
                                                     onClick={() => {
                                                         setRegisterOpened(!registerOpened)
                                                         setLoginOpened(!loginOpened)
-                                                    } }
-                                                    >
-                                                        Regístrate
-                                                    </span> 
+                                                    }}
+                                                >
+                                                    Regístrate
+                                                </span>
                                                 </p>
                                             </form>
                                         </div>
@@ -77,10 +140,10 @@ const Navbar = () => {
                                 }
                                 {
                                     registerOpened ?
-                                        <div className='p-4 fondo-registro position-absolute border border-dark'>   
-                                            <p 
+                                        <div className='p-4 fondo-registro position-absolute border border-dark'>
+                                            <p
                                                 className='pointer'
-                                                onClick={() => setRegisterOpened(!registerOpened) }
+                                                onClick={() => setRegisterOpened(!registerOpened)}
                                             >
                                                 <i class="fas fa-arrow-left"></i> Volver
                                             </p>
@@ -145,8 +208,8 @@ const Navbar = () => {
                                                         <button type="submit" className="boton btn-rounded bg-principal text-white px-5">Registrarme</button>
                                                     </div>
                                                 </div>
-                                            </form>                                                    
-                                        </div>  
+                                            </form>
+                                        </div>
                                         :
                                         ''
                                 }
