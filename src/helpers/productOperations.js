@@ -22,3 +22,21 @@ export const getPrecioTotal = () => {
 
     return total;
 }
+
+export const getProductosCarrito = () => {
+    const carrito = localStorage.getItem('carrito');
+
+    if (carrito) {
+        return JSON.parse(carrito);
+    } else {
+        return [];
+    }
+}
+
+export const deleteProductoCarrito = (nombre) => {
+    const carrito = localStorage.getItem('carrito');
+    const carritoJSON = JSON.parse(carrito);
+    const productos = carritoJSON.filter(producto => producto.nombre !== nombre);
+
+    localStorage.setItem('carrito', JSON.stringify(productos));
+}

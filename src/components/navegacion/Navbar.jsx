@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavbarComponent } from './NavbarComponent';
 import '../../index.css';
 import imgLogo from './Logo-misalud.png';
@@ -8,6 +8,7 @@ import imgCart from './mdi_cart.png';
 import logoLogin from './logoLogin.png';
 import { Link } from 'react-router-dom';
 import { getUserByEmailAndPassword, isAuthenticated, registerUser } from '../../helpers/userOperations';
+import { deleteProductoCarrito, getPrecioTotal, getProductosCarrito } from '../../helpers/productOperations';
 
 
 const Navbar = () => {
@@ -28,8 +29,12 @@ const Navbar = () => {
         dni: ''
     });
     const [cartOpened, setCartOpened] = useState(false);
+    const [productosCarrito, setProductosCarrito] = useState([]);
+    const [cartMove, setCartMove] = useState(false);
 
     const { nombre, ap_paterno } = isAuthenticated();
+
+    const precioProductos = getPrecioTotal();
 
     const handleChange = name => event => {
         setValuesLogin({ ...valuesLogin, [name]: event.target.value });
@@ -60,11 +65,16 @@ const Navbar = () => {
         window.location.reload();
     }
 
+    useEffect(() => {
+        const productos = getProductosCarrito();
+        setProductosCarrito(productos);
+    }, [cartMove]);
+
     return (
         <React.Fragment>
             <div className="bg-white">
-                <nav class="">
-                    <div class=" d-flex justify-content-between mx-2">
+                <nav className="">
+                    <div className=" d-flex justify-content-between mx-2">
                         <div className='d-flex align-self-center'>
                             <Link to="/">
                                 <img src={imgLogo} alt="" />
@@ -76,9 +86,9 @@ const Navbar = () => {
                             </div>
                         </div>
                         <div className='p-2 align-self-center'>
-                            <form class="d-flex">
-                                <input class="form-control form-control-sm mx-2" type="text" placeholder="Buscar un producto" aria-label=".form-control-sm example"></input>
-                                <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+                            <form className="d-flex">
+                                <input className="form-control form-control-sm mx-2" type="text" placeholder="Buscar un producto" aria-label=".form-control-sm example"></input>
+                                <button className="btn btn-outline-success" type="submit"><i className="fas fa-search"></i></button>
                             </form>
                         </div>
 
@@ -166,7 +176,7 @@ const Navbar = () => {
                                                 className='pointer'
                                                 onClick={() => setRegisterOpened(!registerOpened)}
                                             >
-                                                <i class="fas fa-arrow-left"></i> Volver
+                                                <i className="fas fa-arrow-left"></i> Volver
                                             </p>
                                             <div className='text-center'>
                                                 <img src={logoLogin} alt="logoLogin" />
@@ -190,9 +200,9 @@ const Navbar = () => {
                                                     </div>
                                                     <div className='col-md-6'>
                                                         <div className='form-group'>
-                                                            <input 
-                                                                type="text" 
-                                                                className="form-control" 
+                                                            <input
+                                                                type="text"
+                                                                className="form-control"
                                                                 placeholder="Número de documento"
                                                                 value={valuesRegister.dni}
                                                                 onChange={handleChangeRegister('dni')}
@@ -201,9 +211,9 @@ const Navbar = () => {
                                                     </div>
                                                     <div className='col-md-6'>
                                                         <div className='form-group mt-4'>
-                                                            <input 
-                                                                type="text" 
-                                                                className="form-control" 
+                                                            <input
+                                                                type="text"
+                                                                className="form-control"
                                                                 placeholder="Correo electrónico"
                                                                 value={valuesRegister.email}
                                                                 onChange={handleChangeRegister('email')}
@@ -212,9 +222,9 @@ const Navbar = () => {
                                                     </div>
                                                     <div className='col-md-6'>
                                                         <div className='form-group mt-4'>
-                                                            <input 
-                                                                type="text" 
-                                                                className="form-control" 
+                                                            <input
+                                                                type="text"
+                                                                className="form-control"
                                                                 placeholder="Número de celular"
                                                                 value={valuesRegister.celular}
                                                                 onChange={handleChangeRegister('celular')}
@@ -226,9 +236,9 @@ const Navbar = () => {
                                                     </p>
                                                     <div className='col-md-6'>
                                                         <div className='form-group mt-4'>
-                                                            <input 
-                                                                type="text" 
-                                                                className="form-control" 
+                                                            <input
+                                                                type="text"
+                                                                className="form-control"
                                                                 placeholder="Nombres"
                                                                 value={valuesRegister.nombre}
                                                                 onChange={handleChangeRegister('nombre')}
@@ -237,9 +247,9 @@ const Navbar = () => {
                                                     </div>
                                                     <div className='col-md-6'>
                                                         <div className='form-group mt-4'>
-                                                            <input 
-                                                                type="text" 
-                                                                className="form-control" 
+                                                            <input
+                                                                type="text"
+                                                                className="form-control"
                                                                 placeholder="Apellido paterno"
                                                                 value={valuesRegister.ap_paterno}
                                                                 onChange={handleChangeRegister('ap_paterno')}
@@ -248,9 +258,9 @@ const Navbar = () => {
                                                     </div>
                                                     <div className='col-md-6'>
                                                         <div className='form-group mt-4'>
-                                                            <input 
-                                                                type="text" 
-                                                                className="form-control" 
+                                                            <input
+                                                                type="text"
+                                                                className="form-control"
                                                                 placeholder="Apellido materno"
                                                                 value={valuesRegister.ap_materno}
                                                                 onChange={handleChangeRegister('ap_materno')}
@@ -259,9 +269,9 @@ const Navbar = () => {
                                                     </div>
                                                     <div className='col-md-6'>
                                                         <div className='form-group mt-4'>
-                                                            <input 
-                                                                type="password" 
-                                                                className="form-control" 
+                                                            <input
+                                                                type="password"
+                                                                className="form-control"
                                                                 placeholder="Contraseña"
                                                                 value={valuesRegister.password}
                                                                 onChange={handleChangeRegister('password')}
@@ -273,8 +283,8 @@ const Navbar = () => {
                                                         <label className='form-check-label' for="exampleCheck1">Acepto los términos y condiciones</label>
                                                     </div>
                                                     <div className='form-group mt-4 text-center'>
-                                                        <button 
-                                                            type="submit" 
+                                                        <button
+                                                            type="submit"
                                                             className="boton btn-rounded bg-principal text-white px-5"
                                                             onClick={clickRegister}
                                                         >Registrarme</button>
@@ -288,8 +298,8 @@ const Navbar = () => {
                             </div>
 
                             <div className='align-self-center mx-2'>
-                                <a 
-                                    href="#" 
+                                <a
+                                    href="#"
                                     className='txt-log-nav '
                                     onClick={() => setCartOpened(!cartOpened)}
                                 >
@@ -298,28 +308,45 @@ const Navbar = () => {
                                 {
                                     cartOpened ?
                                         <div className='border border-dark p-4 position-absolute w-500 cart-misalud bg-white'>
-                                            <div className='d-flex justify-content-evenly align-items-center '>
-                                                <div>
-                                                    {/* put an example image */}
-                                                    <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt="product" style={{ width: '80px', height: '80px' }} />
-                                                </div>
-                                                <div>
-                                                    <p className='mb-0'>
-                                                        Producto jejeje
-                                                    </p>
-                                                </div>
-                                                <div>
-                                                    <p className='mb-0'>
-                                                        $100
-                                                    </p>
-                                                </div>
-                                                <div>
-                                                    <button className='btn btn-danger'><i className="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </div>
+                                            {
+                                                productosCarrito.map((producto, index) => {
+                                                    return (
+                                                        <div key={index} className='d-flex justify-content-evenly align-items-center '>
+                                                            <div>
+                                                                {/* put an example image */}
+                                                                <img src={producto.img} alt="product" style={{ width: '80px', height: '80px' }} />
+                                                            </div>
+                                                            <div>
+                                                                <p className='mb-0'>
+                                                                    {producto.nombre}
+                                                                </p>
+                                                            </div>
+                                                            <div>
+                                                                <p className='mb-0'>
+                                                                    S/ {producto.precio}
+                                                                </p>
+                                                            </div>
+                                                            <div>
+                                                                <button 
+                                                                    className='btn btn-danger'
+                                                                    onClick={() => {
+                                                                        deleteProductoCarrito(producto.nombre);
+                                                                        setCartMove(!cartMove);
+                                                                    } }
+                                                                >
+                                                                    <i className="far fa-trash-alt"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                    )
+                                                })
+
+                                            }
+
                                             <div className='d-flex justify-content-between align-items-center p-2 border-top border-bottom border-dark mt-4'>
                                                 <p className='mb-0'>Total</p>
-                                                <p className='mb-0'>$100</p>
+                                                <p className='mb-0'>S/ {precioProductos}</p>
                                             </div>
                                             <div className="d-flex justify-content-evenly mt-4">
                                                 <Link
