@@ -1,18 +1,34 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getProduct, getProductsByTipo } from '../../helpers/productOperations';
 import saly26 from './Saly-26.png';
+import medico from './medico.png';
+import infante from './niño.png';
 import logo from '../clubpage/image 3.png';
 import carritoIcon from './carrito-de-compras.png';
+import { CardProduct } from '../ui/CardProduct';
+import { productos } from '../../db/productos';
+import { Banner } from './Banner';
 
 export const CatalogoPage = () => {
+
+    const [relacionados, setRelacionados] = useState([]);
+    const [relacionadosCP, setRelacionadosCP] = useState([]);
+    const [relacionadosCI, setRelacionadosCI] = useState([]);
+
+    const [filtros, setFiltros] = useState('1');
 
     const desplegarItems = (e) => {
         const $filtros = document.querySelectorAll(".filtros-categorias a");
         const $desplegables = document.querySelectorAll(".accord-item");
+        console.log(productos[0].name);
         
         $filtros.forEach(el => {
             if (e.target === el) {
                 $filtros.forEach(el => el.classList.remove("fw-500"));
                 el.classList.add("fw-500");
+                setFiltros(el.getAttribute("value"));
 
                 const $desplegable = document.getElementById(el.getAttribute("data-bs-target"));
 
@@ -28,6 +44,14 @@ export const CatalogoPage = () => {
     React.useEffect(() => {
         window.addEventListener("click", desplegarItems);
 
+        const relacionados = productos;
+        const relacionadosCP = getProductsByTipo('cuidado');
+        const relacionadosCI = getProductsByTipo('infantil');
+
+        setRelacionados(relacionados);
+        setRelacionadosCP(relacionadosCP);
+        setRelacionadosCI(relacionadosCI);
+
         return () => {
             window.removeEventListener("click", desplegarItems)
         }
@@ -35,35 +59,22 @@ export const CatalogoPage = () => {
 
     return (
         <div>
-            <div className="bg-principal banner-height mb-5">
-                <div className="container">
-                    <div className='row d-flex'>
-                        <div className='col-sm-6 mx-auto align-self-center text-center mb-5 pb-5'>
-                            <img src={logo} alt="logo" />
-                            <p className='text-white fs-5'>
-                                Los mejores productos con mayor calidad ya disponibles para garantizar la seguridad en tu salud.
-                            </p>
-                            <div className='d-sm-flex justify-content-evenly'>
-                                
-                                <button className='boton w-little border-little  mt-4 mt-sm-0  fs-6 btn-rounded bg-white fw-bold btn-size d-flex p-3'>
-                                    Ir al carrito 
-                                    <img src={carritoIcon} alt='carrito de compras' width={25} />
-                                </button>
-                            </div>
-                        </div>
-                        <div className='d-sm-inline d-none col mx-auto'>
-                            <img src={saly26} alt="saly" />
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {filtros === '1' ?
+                <Banner descripcion="Los mejores productos con mayor calidad ya disponibles para garantizar la seguridad en tu salud." img={saly26} width={450} />
+                : filtros === '2' ? <Banner descripcion="Los mejores productos de cuidado personal que puedes encontrar en tu ciudad" img={medico} width={300} />
+                : <Banner descripcion="Los mejores productos de cuidado infantil que puedes encontrar en tu ciudad" img={infante} width={450}  />}
+            
 
             <div className='row px-5 pt-4 d-flex justify-content-between'>
-                <div className='d-flex' style={{width:'20rem'}}>
-                    <p className='mt-2'> <span style={{ color: '#00B1A9' }}>Inicio</span> {'>'} Catálogo</p>
+                <div className='d-flex' style={{ width: '20rem' }}>
+                    {filtros === '1' ? 
+                        <p className='mt-2'> <span style={{ color: '#00B1A9' }}>Inicio</span> {'>'} Catálogo</p>
+                        : filtros === '2' ? <p className='mt-2'> <span style={{ color: '#00B1A9' }}>Inicio</span> {'>'} Catálogo {'>'} Cuidado Personal</p>
+                        : <p className='mt-2'> <span style={{ color: '#00B1A9' }}>Inicio</span> {'>'} Catálogo {'>'} Cuidado Infantil</p>}
+                    
                 </div>
                 
-                <div className='d-flex justify-content-end' style={{width:'23rem'}}>
+                <div className='d-flex justify-content-end' style={{width:'24rem'}}>
                     <p className='mt-2'>Ordenar por </p>
                     <select className='form-select ms-3' aria-label='ra' style={{width:"15rem", height:"2.5rem"}}>
                         <option value='1'>Nombre A-Z</option>
@@ -82,9 +93,9 @@ export const CatalogoPage = () => {
                         <hr></hr>
                         <p>Categorías</p>
                         <div className='ms-3 filtros-categorias'>
-                            <a href="#collapse1" data-bs-toggle="collapse" data-bs-target="collapse1" aria-controls="collapse1">Categoría 1</a><br></br>
-                            <a href="#collapse2" data-bs-toggle="collapse" data-bs-target="collapse2" aria-controls="collapse2">Categoría 2</a><br></br>
-                            <a href="#collapse3" data-bs-toggle="collapse" data-bs-target="collapse3" aria-controls="collapse3">Categoría 3</a><br></br>
+                            <a href="#collapse1" value='1' data-bs-toggle="collapse" data-bs-target="collapse1" aria-controls="collapse1">Todas las categorías</a><br></br>
+                            <a href="#collapse2" value='2' data-bs-toggle="collapse" data-bs-target="collapse2" aria-controls="collapse2">Cuidado Personal</a><br></br>
+                            <a href="#collapse3" value='3' data-bs-toggle="collapse" data-bs-target="collapse3" aria-controls="collapse3">Cuidado Infantil</a><br></br>
                             <a href="#collapse4" data-bs-toggle="collapse" data-bs-target="collapse4" aria-controls="collapse4">Categoría 4</a><br></br>
                             <a href="#collapse5" data-bs-toggle="collapse" data-bs-target="collapse5" aria-controls="collapse5">Categoría 5</a><br></br>
                             <a href="#collapse6" data-bs-toggle="collapse" data-bs-target="collapse6" aria-controls="collapse6">Categoría 6</a><br></br>
@@ -96,16 +107,60 @@ export const CatalogoPage = () => {
                     </div>
                 </div>
                 <div className='col-md-9 container-accord-items'>
-                    <div id="collapse1" className='accord-item accordion-collapse collapse show'>
-                        <p>A ver probando esta vaina xdd. Se despliega la sección 1</p>
+                    <div id="collapse1" className='row accord-item accordion-collapse collapse show'>
+                        {
+                            relacionados.slice(0, 12).map(product => (
+                                <div className='col-md-4 mb-3'>
+                                    <CardProduct
+                                        key={product.id}
+                                        img={product.smallImg}
+                                        title={product.name}
+                                        titleColor={'black'}
+                                        price={product.price}
+                                        btnColor={'success'}
+                                        borderColor={'#C4C4C4'}
+                                    />
+                               </div>
+                            ))
+                        }
+                        
+
                     </div>
 
-                    <div id="collapse2" className='accord-item accordion-collapse collapse'>
-                        <p>A ver probando esta vaina xdd. Se despliega la sección 2</p>
+                    <div id="collapse2" className='row accord-item accordion-collapse collapse'>
+                        {
+                            relacionadosCP.slice(0, 12).map(product => (
+                                <div className='col-md-4 mb-3'>
+                                    <CardProduct
+                                        key={product.id}
+                                        img={product.smallImg}
+                                        title={product.name}
+                                        titleColor={'black'}
+                                        price={product.price}
+                                        btnColor={'success'}
+                                        borderColor={'#C4C4C4'}
+                                    />
+                               </div>
+                            ))
+                        }
                     </div>
 
-                    <div id="collapse3" className='accord-item accordion-collapse collapse'>
-                        <p>A ver probando esta vaina xdd. Se despliega la sección 3</p>
+                    <div id="collapse3" className='row accord-item accordion-collapse collapse'>
+                        {
+                            relacionadosCI.slice(0, 12).map(product => (
+                                <div className='col-md-4 mb-3'>
+                                    <CardProduct
+                                        key={product.id}
+                                        img={product.smallImg}
+                                        title={product.name}
+                                        titleColor={'black'}
+                                        price={product.price}
+                                        btnColor={'success'}
+                                        borderColor={'#C4C4C4'}
+                                    />
+                               </div>
+                            ))
+                        }
                     </div>
                     
                     <div id="collapse4" className='accord-item accordion-collapse collapse'>
