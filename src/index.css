@@ -12,12 +12,20 @@ body {
 
 /*utilities*/
 
+.min-h-500 {
+  min-height: 500px;
+}
+
 .pointer {
   cursor: pointer;
 }
 
 .bg-principal {
   background-color: #00B1A9;
+}
+
+.bg-principal-2 {
+  background-color: #aad1cf;
 }
 
 .color-principal {
