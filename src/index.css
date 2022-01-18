@@ -12,12 +12,20 @@ body {
 
 /*utilities*/
 
+.min-h-500 {
+  min-height: 500px;
+}
+
 .pointer {
   cursor: pointer;
 }
 
 .bg-principal {
   background-color: #00B1A9;
+}
+
+.bg-principal-2 {
+  background-color: #aad1cf;
 }
 
 .color-principal {
@@ -29,7 +37,7 @@ body {
 }
 
 .border-solid {
-  border: 5px solid #00B1A9;
+  border: 5px solid #00B1A9 !important;
 }
 
 .banner-height {
@@ -111,6 +119,10 @@ body {
   width: 20px;
   height: 20px;
 
+}
+
+.w-500 {
+  width: 500px;
 }
 
 .hide-arrows::-webkit-inner-spin-button,
@@ -241,4 +253,11 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 70%;
+}
+
+/*cart*/
+
+.cart-misalud {
+  right: 100px;
+  
 }

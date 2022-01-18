@@ -11,6 +11,7 @@ import Navbar from '../components/navegacion/Navbar';
 import { NosotrosPage } from '../components/nosotrospage/NosotrosPage';
 import { RegistroClubPage } from '../components/registroclubpage/RegistroClubPage';
 import {CatalogoPage} from '../components/catalogopage/CatalogoPage'
+import { PagarPage } from '../components/pagarpage/PagarPage';
 
 export const AppRouter = () => {
     return (
@@ -24,6 +25,7 @@ export const AppRouter = () => {
                     <Route exact path="/nosotros" component={NosotrosPage} />
                     <Route exact path="/detalles-producto/:id" component={DetailsProductPage}/> 
                     <Route exact path="/catalogo-page" component={CatalogoPage}/>
+                    <Route exact path="/pagar" component={PagarPage} />
                 </Switch>
             </div>
         </Router>
