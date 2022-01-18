@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getPrecioTotal } from '../../helpers/productOperations';
 import americanLogo from './american-logo.png';
 import dinnersLogo from './dinners-logo.png';
 import mastercardLogo from './mastercard-logo.png';
@@ -11,6 +12,8 @@ export const PagarPage = () => {
         horario: '',
         pago: ''
     });
+
+    const precioProductos = getPrecioTotal();
 
     return (
         <div className='container mt-4'>
@@ -137,7 +140,32 @@ export const PagarPage = () => {
                     <h6 className='border-bottom border-dark py-2 text-center'>
                         Resumen de pedido
                     </h6>
-
+                    <div>
+                        <div className='d-flex justify-content-between px-2'>
+                            <p className='text-secondary'>
+                                Costo de productos
+                            </p>
+                            <p className='text-secondary'>
+                                S/ {precioProductos}
+                            </p>
+                        </div>
+                        <div className='d-flex justify-content-between px-2'>
+                            <p className='text-secondary'>
+                                Costo de envío
+                            </p>
+                            <p className='text-secondary'>
+                                {valuesPedido.recepcion === 'Retiro' ? 'Gratis' : 'S/ 5.00'}
+                            </p>
+                        </div>
+                        <div className='d-flex justify-content-between px-2'>
+                            <p className='text-dark fw-bold'>
+                                Total
+                            </p>
+                            <p className='text-dark fw-bold'>
+                                S/ {precioProductos + (valuesPedido.recepcion === 'Retiro' ? 0 : 5)}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className='mt-5'>
