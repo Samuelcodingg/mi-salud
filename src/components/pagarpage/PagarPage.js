@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import americanLogo from './american-logo.png';
 import dinnersLogo from './dinners-logo.png';
 import mastercardLogo from './mastercard-logo.png';
 import visaLogo from './visa-logo.png';
 
 export const PagarPage = () => {
+
+    const [valuesPedido, setValuesPedido] = useState({
+        recepcion: '',
+        horario: '',
+        pago: ''
+    });
+
     return (
         <div className='container mt-4'>
             <div className='row'>
@@ -14,7 +21,13 @@ export const PagarPage = () => {
                             <i className="fas fa-map-marker-alt"></i> ¿En dónde recibirás tu pedido?
                         </h6>
                         <div className='d-flex align-items-center ms-2'>
-                            <input type='radio' name='radio' id='radio1' className='mr-2' />
+                            <input 
+                                type='radio' 
+                                name='radio' 
+                                id='radio1' 
+                                className='mr-2' 
+                                onClick={() => setValuesPedido({...valuesPedido, recepcion: 'Delivery'})}
+                            />
                             <label htmlFor='radio1'>
                                 <p className='p-2 mb-0'>
                                     En tu dirección actual &nbsp;
@@ -28,7 +41,13 @@ export const PagarPage = () => {
                             Recibe tu pedido donde estés
                         </p>
                         <div className='d-flex align-items-center ps-2 border-top border-dark'>
-                            <input type='radio' name='radio' id='radio2' className='mr-2' />
+                            <input 
+                                type='radio' 
+                                name='radio' 
+                                id='radio2' 
+                                className='mr-2' 
+                                onClick={() => setValuesPedido({...valuesPedido, recepcion: 'Retiro'})}    
+                            />
                             <label htmlFor='radio2'>
                                 <p className='p-2 mb-0'>
                                     En una botica &nbsp;
@@ -47,10 +66,17 @@ export const PagarPage = () => {
                             <i className="fas fa-history"></i> &nbsp; Horario de recojo
                         </h6>
                         <div className='d-flex align-items-center ms-2 justify-content-evenly py-4'>
-                            <div className='rounded p-3 pointer border border-dark'>
+                            <div 
+                                className={`rounded p-3 pointer border ${valuesPedido.horario==='8:00 - 12:00' ? 'border-primary' : 'border-dark' } `}
+                                onClick={() => setValuesPedido({...valuesPedido, horario: '8:00 - 12:00'})}
+                            >
                                 8:00 - 12:00
                             </div>
-                            <div className='rounded p-3 pointer border border-dark'>
+                            <div 
+                                className={`rounded p-3 pointer border ${valuesPedido.horario==='13:00 - 20:00' ? 'border-primary' : 'border-dark'} `}
+                                onClick={() => setValuesPedido({...valuesPedido, horario: '13:00 - 20:00'})}    
+                            >
+                                
                                 13:00 - 20:00
                             </div>
                         </div>
@@ -62,25 +88,45 @@ export const PagarPage = () => {
                         <div className='d-flex align-items-center ms-2 justify-content-evenly'>
                             <div className='d-flex align-items-center justify-content-between p-2'>
                                 <div className='d-flex align-items-center'>
-                                    <input type='radio' name="card-radio" className='me-2' />
+                                    <input 
+                                        type='radio' 
+                                        name="card-radio" 
+                                        className='me-2' 
+                                        onClick={() => setValuesPedido({...valuesPedido, pago: 'American Express'})}    
+                                    />
                                     <img src={americanLogo} alt='american-logo' className='mr-2' style={{ width: '100px', height: '80px' }} />
                                 </div>
                             </div>
                             <div className='d-flex align-items-center justify-content-between p-2'>
                                 <div className='d-flex align-items-center'>
-                                    <input type='radio' name="card-radio" className='me-2' />
+                                    <input 
+                                        type='radio' 
+                                        name="card-radio" 
+                                        className='me-2' 
+                                        onClick={() => setValuesPedido({...valuesPedido, pago: 'Dinners Club'})}
+                                    />
                                     <img src={dinnersLogo} alt='dinners-logo' className='mr-2' style={{ width: '100px', height: '50px' }} />
                                 </div>
                             </div>
                             <div className='d-flex align-items-center justify-content-between p-2'>
                                 <div className='d-flex align-items-center'>
-                                    <input type='radio' name="card-radio" className='me-2' />
+                                    <input 
+                                        type='radio' 
+                                        name="card-radio" 
+                                        className='me-2' 
+                                        onClick={() => setValuesPedido({...valuesPedido, pago: 'Mastercard'})}
+                                    />
                                     <img src={mastercardLogo} alt='mastercard-logo' className='mr-2' style={{ width: '100px', height: '50px' }} />
                                 </div>
                             </div>
                             <div className='d-flex align-items-center justify-content-between p-2'>
                                 <div className='d-flex align-items-center'>
-                                    <input type='radio' name="card-radio" className='me-2' />
+                                    <input 
+                                        type='radio' 
+                                        name="card-radio" 
+                                        className='me-2' 
+                                        onClick={() => setValuesPedido({...valuesPedido, pago: 'Visa'})}
+                                    />
                                     <img src={visaLogo} alt='visa-logo' className='mr-2' style={{ width: '100px', height: '50px' }} />
                                 </div>
                             </div>
@@ -100,13 +146,13 @@ export const PagarPage = () => {
                 </h6>
                 <div>
                     <div className='d-flex align-items-center mb-3'>
-                        <i className="fas fa-map-marker-alt"></i> &nbsp; Tipo de entrega:
+                        <i className="fas fa-map-marker-alt"></i> &nbsp; Tipo de entrega: {valuesPedido.recepcion}
                     </div>
                     <div className='d-flex align-items-center mb-3'>
-                        <i className="fas fa-history"></i> &nbsp; Fecha y hora de entrega:
+                        <i className="fas fa-history"></i> &nbsp; Fecha y hora de entrega: {valuesPedido.horario}
                     </div>
                     <div className='d-flex align-items-center mb-3'>
-                        <i className="fas fa-credit-card"></i> &nbsp; Medio de pago:
+                        <i className="fas fa-credit-card"></i> &nbsp; Medio de pago: {valuesPedido.pago}
                     </div>
                 </div>
                 <div className='text-center'>

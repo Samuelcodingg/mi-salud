@@ -37,7 +37,7 @@ body {
 }
 
 .border-solid {
-  border: 5px solid #00B1A9;
+  border: 5px solid #00B1A9 !important;
 }
 
 .banner-height {
