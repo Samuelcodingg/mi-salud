@@ -16,13 +16,37 @@ export const CatalogoPage = () => {
     const [relacionados, setRelacionados] = useState([]);
     const [relacionadosCP, setRelacionadosCP] = useState([]);
     const [relacionadosCI, setRelacionadosCI] = useState([]);
-
+    const [tipoOrdenamiento, setTipoOrdenamiento] = useState('1');
     const [filtros, setFiltros] = useState('1');
+
+    const handleChange = name => event => {
+        console.log(event.target.value);
+        setTipoOrdenamiento(event.target.value);
+    };
+
+    const ordenAlfabeticoAZ = (x, y) => {
+        if (x.name < y.name) return -1;
+        if (x.name > y.name) return +1;
+        return 0;
+    }
+
+    const ordenAlfabeticoZA = (x, y) => {
+        if (x.name < y.name) return +1;
+        if (x.name > y.name) return -1;
+        return 0;
+    }
+
+    const ordenPrecioMenorMayor = (x, y) => {
+        return (parseFloat(x.price.substring(4, x.price.length)) - parseFloat(y.price.substring(4, y.price.length))); 
+    }
+
+    const ordenPrecioMayorMenor = (x, y) => {
+        return (parseFloat(y.price.substring(4, y.price.length)) - parseFloat(x.price.substring(4, x.price.length)) ); 
+    }
 
     const desplegarItems = (e) => {
         const $filtros = document.querySelectorAll(".filtros-categorias a");
         const $desplegables = document.querySelectorAll(".accord-item");
-        console.log(productos[0].name);
         
         $filtros.forEach(el => {
             if (e.target === el) {
@@ -76,7 +100,8 @@ export const CatalogoPage = () => {
                 
                 <div className='d-flex justify-content-end' style={{width:'24rem'}}>
                     <p className='mt-2'>Ordenar por </p>
-                    <select className='form-select ms-3' aria-label='ra' style={{width:"15rem", height:"2.5rem"}}>
+                    <select className='form-select ms-3' aria-label='ra' style={{ width: "15rem", height: "2.5rem" }}
+                    value={tipoOrdenamiento} onChange={handleChange('tipoOrdenamiento')}>
                         <option value='1'>Nombre A-Z</option>
                         <option value='2'>Nombre Z-A</option>
                         <option value='3'>Precio (menor a mayor)</option>
@@ -93,9 +118,9 @@ export const CatalogoPage = () => {
                         <hr></hr>
                         <p>Categorías</p>
                         <div className='ms-3 filtros-categorias'>
-                            <a href="#collapse1" value='1' data-bs-toggle="collapse" data-bs-target="collapse1" aria-controls="collapse1">Todas las categorías</a><br></br>
-                            <a href="#collapse2" value='2' data-bs-toggle="collapse" data-bs-target="collapse2" aria-controls="collapse2">Cuidado Personal</a><br></br>
-                            <a href="#collapse3" value='3' data-bs-toggle="collapse" data-bs-target="collapse3" aria-controls="collapse3">Cuidado Infantil</a><br></br>
+                            <a href="#todas-categorias" value='1' data-bs-toggle="collapse" data-bs-target="todas-categorias" aria-controls="todas-categorias">Todas las categorías</a><br></br>
+                            <a href="#cuidado-personal" value='2' data-bs-toggle="collapse" data-bs-target="cuidado-personal" aria-controls="cuidado-personal">Cuidado Personal</a><br></br>
+                            <a href="#cuidado-infantil" value='3' data-bs-toggle="collapse" data-bs-target="cuidado-infantil" aria-controls="cuidado-infantil">Cuidado Infantil</a><br></br>
                             <a href="#collapse4" data-bs-toggle="collapse" data-bs-target="collapse4" aria-controls="collapse4">Categoría 4</a><br></br>
                             <a href="#collapse5" data-bs-toggle="collapse" data-bs-target="collapse5" aria-controls="collapse5">Categoría 5</a><br></br>
                             <a href="#collapse6" data-bs-toggle="collapse" data-bs-target="collapse6" aria-controls="collapse6">Categoría 6</a><br></br>
@@ -107,9 +132,24 @@ export const CatalogoPage = () => {
                     </div>
                 </div>
                 <div className='col-md-9 container-accord-items'>
-                    <div id="collapse1" className='row accord-item accordion-collapse collapse show'>
+                    <div id="todas-categorias" className='row accord-item accordion-collapse collapse show'>
                         {
-                            relacionados.slice(0, 12).map(product => (
+
+                            tipoOrdenamiento === '1' ? 
+                                relacionados.slice(0, 12).sort(ordenAlfabeticoAZ).map(product => (
+                                    <div className='col-md-4 mb-3'>
+                                        <CardProduct
+                                            key={product.id}
+                                            img={product.smallImg}
+                                            title={product.name}
+                                            titleColor={'black'}
+                                            price={product.price}
+                                            btnColor={'success'}
+                                            borderColor={'#C4C4C4'}
+                                        />
+                                </div>
+                                )) : tipoOrdenamiento === '2' ? 
+                                relacionados.slice(0, 12).sort(ordenAlfabeticoZA).map(product => (
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
@@ -121,15 +161,70 @@ export const CatalogoPage = () => {
                                         borderColor={'#C4C4C4'}
                                     />
                                </div>
-                            ))
+                                )) : tipoOrdenamiento === '3' ? 
+                                relacionados.slice(0, 12).sort(ordenPrecioMenorMayor).map(product => (
+                                <div className='col-md-4 mb-3'>
+                                    <CardProduct
+                                        key={product.id}
+                                        img={product.smallImg}
+                                        title={product.name}
+                                        titleColor={'black'}
+                                        price={product.price}
+                                        btnColor={'success'}
+                                        borderColor={'#C4C4C4'}
+                                    />
+                                    </div>
+                                )) : tipoOrdenamiento === '4' ?
+                                relacionados.slice(0, 12).sort(ordenPrecioMayorMenor).map(product => (
+                                <div className='col-md-4 mb-3'>
+                                    <CardProduct
+                                        key={product.id}
+                                        img={product.smallImg}
+                                        title={product.name}
+                                        titleColor={'black'}
+                                        price={product.price}
+                                        btnColor={'success'}
+                                        borderColor={'#C4C4C4'}
+                                    />
+                                    </div>
+                                )) :
+                                relacionados.slice(0, 12).map(product => (
+                                <div className='col-md-4 mb-3'>
+                                    <CardProduct
+                                        key={product.id}
+                                        img={product.smallImg}
+                                        title={product.name}
+                                        titleColor={'black'}
+                                        price={product.price}
+                                        btnColor={'success'}
+                                        borderColor={'#C4C4C4'}
+                                    />
+                                    </div>
+                                )) 
+                                            
                         }
                         
 
                     </div>
 
-                    <div id="collapse2" className='row accord-item accordion-collapse collapse'>
+                    <div id="cuidado-personal" className='row accord-item accordion-collapse collapse'>
                         {
-                            relacionadosCP.slice(0, 12).map(product => (
+
+                            tipoOrdenamiento === '1' ? 
+                                relacionadosCP.slice(0, 12).sort(ordenAlfabeticoAZ).map(product => (
+                                    <div className='col-md-4 mb-3'>
+                                        <CardProduct
+                                            key={product.id}
+                                            img={product.smallImg}
+                                            title={product.name}
+                                            titleColor={'black'}
+                                            price={product.price}
+                                            btnColor={'success'}
+                                            borderColor={'#C4C4C4'}
+                                        />
+                                </div>
+                                )) : tipoOrdenamiento === '2' ? 
+                                relacionadosCP.slice(0, 12).sort(ordenAlfabeticoZA).map(product => (
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
@@ -141,13 +236,68 @@ export const CatalogoPage = () => {
                                         borderColor={'#C4C4C4'}
                                     />
                                </div>
-                            ))
+                                )) : tipoOrdenamiento === '3' ? 
+                                relacionadosCP.slice(0, 12).sort(ordenPrecioMenorMayor).map(product => (
+                                <div className='col-md-4 mb-3'>
+                                    <CardProduct
+                                        key={product.id}
+                                        img={product.smallImg}
+                                        title={product.name}
+                                        titleColor={'black'}
+                                        price={product.price}
+                                        btnColor={'success'}
+                                        borderColor={'#C4C4C4'}
+                                    />
+                                    </div>
+                                )) : tipoOrdenamiento === '4' ?
+                                relacionadosCP.slice(0, 12).sort(ordenPrecioMayorMenor).map(product => (
+                                <div className='col-md-4 mb-3'>
+                                    <CardProduct
+                                        key={product.id}
+                                        img={product.smallImg}
+                                        title={product.name}
+                                        titleColor={'black'}
+                                        price={product.price}
+                                        btnColor={'success'}
+                                        borderColor={'#C4C4C4'}
+                                    />
+                                    </div>
+                                )) :
+                                relacionadosCP.slice(0, 12).map(product => (
+                                <div className='col-md-4 mb-3'>
+                                    <CardProduct
+                                        key={product.id}
+                                        img={product.smallImg}
+                                        title={product.name}
+                                        titleColor={'black'}
+                                        price={product.price}
+                                        btnColor={'success'}
+                                        borderColor={'#C4C4C4'}
+                                    />
+                                    </div>
+                                )) 
+                                            
                         }
                     </div>
 
-                    <div id="collapse3" className='row accord-item accordion-collapse collapse'>
+                    <div id="cuidado-infantil" className='row accord-item accordion-collapse collapse'>
                         {
-                            relacionadosCI.slice(0, 12).map(product => (
+
+                            tipoOrdenamiento === '1' ? 
+                                relacionadosCI.slice(0, 12).sort(ordenAlfabeticoAZ).map(product => (
+                                    <div className='col-md-4 mb-3'>
+                                        <CardProduct
+                                            key={product.id}
+                                            img={product.smallImg}
+                                            title={product.name}
+                                            titleColor={'black'}
+                                            price={product.price}
+                                            btnColor={'success'}
+                                            borderColor={'#C4C4C4'}
+                                        />
+                                </div>
+                                )) : tipoOrdenamiento === '2' ? 
+                                relacionadosCI.slice(0, 12).sort(ordenAlfabeticoZA).map(product => (
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
@@ -159,7 +309,47 @@ export const CatalogoPage = () => {
                                         borderColor={'#C4C4C4'}
                                     />
                                </div>
-                            ))
+                                )) : tipoOrdenamiento === '3' ? 
+                                relacionadosCI.slice(0, 12).sort(ordenPrecioMenorMayor).map(product => (
+                                <div className='col-md-4 mb-3'>
+                                    <CardProduct
+                                        key={product.id}
+                                        img={product.smallImg}
+                                        title={product.name}
+                                        titleColor={'black'}
+                                        price={product.price}
+                                        btnColor={'success'}
+                                        borderColor={'#C4C4C4'}
+                                    />
+                                    </div>
+                                )) : tipoOrdenamiento === '4' ?
+                                relacionadosCI.slice(0, 12).sort(ordenPrecioMayorMenor).map(product => (
+                                <div className='col-md-4 mb-3'>
+                                    <CardProduct
+                                        key={product.id}
+                                        img={product.smallImg}
+                                        title={product.name}
+                                        titleColor={'black'}
+                                        price={product.price}
+                                        btnColor={'success'}
+                                        borderColor={'#C4C4C4'}
+                                    />
+                                    </div>
+                                )) :
+                                relacionadosCI.slice(0, 12).map(product => (
+                                <div className='col-md-4 mb-3'>
+                                    <CardProduct
+                                        key={product.id}
+                                        img={product.smallImg}
+                                        title={product.name}
+                                        titleColor={'black'}
+                                        price={product.price}
+                                        btnColor={'success'}
+                                        borderColor={'#C4C4C4'}
+                                    />
+                                    </div>
+                                )) 
+                                            
                         }
                     </div>
                     
