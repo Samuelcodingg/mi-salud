@@ -12,6 +12,7 @@ import { NosotrosPage } from '../components/nosotrospage/NosotrosPage';
 import { RegistroClubPage } from '../components/registroclubpage/RegistroClubPage';
 import {CatalogoPage} from '../components/catalogopage/CatalogoPage'
 import { PagarPage } from '../components/pagarpage/PagarPage';
+import  Footer  from '../components/navegacion/Footer';
 
 export const AppRouter = () => {
     return (
@@ -28,6 +29,9 @@ export const AppRouter = () => {
                     <Route exact path="/pagar" component={PagarPage} />
                 </Switch>
             </div>
+                <Footer/>
+            
+            
         </Router>
     )
 }
