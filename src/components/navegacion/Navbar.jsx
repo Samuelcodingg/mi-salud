@@ -27,6 +27,7 @@ const Navbar = () => {
         celular: '',
         dni: ''
     });
+    const [cartOpened, setCartOpened] = useState(false);
 
     const { nombre, ap_paterno } = isAuthenticated();
 
@@ -287,9 +288,57 @@ const Navbar = () => {
                             </div>
 
                             <div className='align-self-center mx-2'>
-                                <a href="#" className='txt-log-nav '>
+                                <a 
+                                    href="#" 
+                                    className='txt-log-nav '
+                                    onClick={() => setCartOpened(!cartOpened)}
+                                >
                                     <img src={imgCart} alt="" /><span className='mx-2 '>Mi carrito</span>
                                 </a>
+                                {
+                                    cartOpened ?
+                                        <div className='border border-dark p-4 position-absolute w-500 cart-misalud bg-white'>
+                                            <div className='d-flex justify-content-evenly align-items-center '>
+                                                <div>
+                                                    {/* put an example image */}
+                                                    <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt="product" style={{ width: '80px', height: '80px' }} />
+                                                </div>
+                                                <div>
+                                                    <p className='mb-0'>
+                                                        Producto jejeje
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <p className='mb-0'>
+                                                        $100
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <button className='btn btn-danger'><i className="far fa-trash-alt"></i></button>
+                                                </div>
+                                            </div>
+                                            <div className='d-flex justify-content-between align-items-center p-2 border-top border-bottom border-dark mt-4'>
+                                                <p className='mb-0'>Total</p>
+                                                <p className='mb-0'>$100</p>
+                                            </div>
+                                            <div className="d-flex justify-content-evenly mt-4">
+                                                <Link
+                                                    to="/catalogo-page"
+                                                >
+                                                    <button className="boton btn-rounded bg-white text-dark">
+                                                        Seguir comprando
+                                                    </button>
+                                                </Link>
+                                                <Link
+                                                    to="/pagar"
+                                                >
+                                                    <button className="boton btn-rounded px-5 bg-principal text-white">Pagar</button>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                        :
+                                        ''
+                                }
                             </div>
                         </div>
 
