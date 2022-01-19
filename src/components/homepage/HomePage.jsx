@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { CardProduct } from '../ui/CardProduct';
-import { productos } from '../../db/productos';
+
 import {Slideshow,Slide} from './Slideshow';
 import imgslide from './of-banner.png';
 import panel from './panel-1.png';
@@ -9,10 +9,19 @@ import imgmaster from './logos_mastercard.png';
 import imgamer from './fontisto_american-express.png';
 import imgdiners from './logos_dinersclub.png';
 import { getProduct, getProductsByTipo } from '../../helpers/productOperations';
+import { productos } from '../../db/productos';
 
 export const HomePage = () => {
-    const relacion =  productos;
-    const relacionadosCI = getProductsByTipo('infantil');
+    const [relacionados, setRelacionados] = useState([]);
+    const [relacionadosCI, setRelacionadosCI] = useState([]);
+    
+    useEffect(()=>{
+        const relacionados = productos;
+        setRelacionados(relacionados);
+
+        const relacionadosCI = getProductsByTipo('infantil');
+        setRelacionadosCI(relacionadosCI);
+    },[]);
 
     return (
         <React.Fragment>
@@ -38,16 +47,40 @@ export const HomePage = () => {
                     <div className='mx-4 my-5'>
                         <Slideshow controles={true} autoplay={false} velocidad ="4000" intervalo="8000">
                             <Slide className='d-flex justify-content-around'>
-                                <CardProduct/>
-                                <CardProduct/>
-                                <CardProduct/>
-                                <CardProduct/>
+                                {
+                                    relacionados.slice(0, 4).map(product => (
+                                        <div>
+                                            <CardProduct
+                                                key={product.id}
+                                                id={product.id}
+                                                img={product.smallImg}
+                                                title={product.name}
+                                                titleColor={'black'}
+                                                price={product.price}
+                                                btnColor={'success'}
+                                                borderColor={'#C4C4C4'}
+                                            />
+                                    </div>
+                                    ))
+                                }
                             </Slide>
                             <Slide className='d-flex justify-content-around'>
-                                <CardProduct/>
-                                <CardProduct/>
-                                <CardProduct/>
-                                <CardProduct/>
+                                {
+                                    relacionados.slice(0, 4).map(product => (
+                                        <div>
+                                            <CardProduct
+                                                key={product.id}
+                                                id={product.id}
+                                                img={product.smallImg}
+                                                title={product.name}
+                                                titleColor={'black'}
+                                                price={product.price}
+                                                btnColor={'success'}
+                                                borderColor={'#C4C4C4'}
+                                            />
+                                        </div>
+                                    ))
+                                }
                             </Slide>
                         </Slideshow>
                     </div>
@@ -89,16 +122,40 @@ export const HomePage = () => {
                     <div className='mx-4 my-5'>
                     <Slideshow controles={true} autoplay={false} velocidad ="4000" intervalo="8000">
                             <Slide className='d-flex justify-content-around'>
-                                <CardProduct/>
-                                <CardProduct/>
-                                <CardProduct/>
-                                <CardProduct/>
+                                {
+                                    relacionadosCI.slice(0, 4).map(product => (
+                                        <div>
+                                            <CardProduct
+                                                key={product.id}
+                                                id={product.id}
+                                                img={product.smallImg}
+                                                title={product.name}
+                                                titleColor={'black'}
+                                                price={product.price}
+                                                btnColor={'success'}
+                                                borderColor={'#C4C4C4'}
+                                            />
+                                        </div>
+                                    ))
+                                }
                             </Slide>
                             <Slide className='d-flex justify-content-around'>
-                                <CardProduct/>
-                                <CardProduct/>
-                                <CardProduct/>
-                                <CardProduct/>
+                                {
+                                    relacionadosCI.slice(0, 4).map(product => (
+                                        <div>
+                                            <CardProduct
+                                                key={product.id}
+                                                id={product.id}
+                                                img={product.smallImg}
+                                                title={product.name}
+                                                titleColor={'black'}
+                                                price={product.price}
+                                                btnColor={'success'}
+                                                borderColor={'#C4C4C4'}
+                                            />
+                                        </div>
+                                    ))
+                                }
                             </Slide>
                         </Slideshow>
                     </div>
