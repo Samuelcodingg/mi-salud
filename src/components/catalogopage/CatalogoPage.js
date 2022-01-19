@@ -37,11 +37,11 @@ export const CatalogoPage = () => {
     }
 
     const ordenPrecioMenorMayor = (x, y) => {
-        return (parseFloat(x.price.substring(4, x.price.length)) - parseFloat(y.price.substring(4, y.price.length))); 
+        return (x.price - y.price); 
     }
 
     const ordenPrecioMayorMenor = (x, y) => {
-        return (parseFloat(y.price.substring(4, y.price.length)) - parseFloat(x.price.substring(4, x.price.length)) ); 
+        return (y.price - x.price ); 
     }
 
     const desplegarItems = (e) => {
