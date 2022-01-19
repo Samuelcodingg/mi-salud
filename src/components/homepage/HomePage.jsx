@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react';
 import { CardProduct } from '../ui/CardProduct';
-
 import {Slideshow,Slide} from './Slideshow';
 import imgslide from './of-banner.png';
 import panel from './panel-1.png';
@@ -12,6 +11,7 @@ import { getProduct, getProductsByTipo } from '../../helpers/productOperations';
 import { productos } from '../../db/productos';
 
 export const HomePage = () => {
+
     const [relacionados, setRelacionados] = useState([]);
     const [relacionadosCI, setRelacionadosCI] = useState([]);
     
@@ -22,6 +22,7 @@ export const HomePage = () => {
         const relacionadosCI = getProductsByTipo('infantil');
         setRelacionadosCI(relacionadosCI);
     },[]);
+
 
     return (
         <React.Fragment>
@@ -45,6 +46,7 @@ export const HomePage = () => {
                         <div className='bg-seccion2'></div>
                     </div>
                     <div className='mx-4 my-5'>
+
                         <Slideshow controles={true} autoplay={false} velocidad ="4000" intervalo="8000">
                             <Slide className='d-flex justify-content-around'>
                                 {
@@ -161,6 +163,8 @@ export const HomePage = () => {
                     </div>
                 </section>
 
+
+
                 <section className='my-5'>
                     <div className='d-flex px-5 justify-content-around'>
                         <p>Formas de pago</p>
@@ -168,6 +172,7 @@ export const HomePage = () => {
                         <img src={imgmaster} alt="" />
                         <img src={imgamer} alt="" />
                         <img src={imgdiners} alt="" />
+
                     </div>
                 </section>
             </div>
