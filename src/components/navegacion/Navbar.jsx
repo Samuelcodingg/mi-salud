@@ -102,11 +102,11 @@ const Navbar = () => {
                             <Link to="/">
                                 <img src={imgLogo} alt="" />
                             </Link>
-                            <div className='align-self-center direc'>
+                            {/* <div className='align-self-center direc'>
                                 <a href="#" className='txt-log-nav'>
                                     <img src={imgIconUbi} alt="" /><span className='mx-2'>Ingresa tu dirección</span>
                                 </a>
-                            </div>
+                            </div> */}
                         </div>
                         <div className='p-2 align-self-center'>
                             <form className="d-flex">
