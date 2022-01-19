@@ -7,7 +7,7 @@ import iconLib from './libro.png';
 
 const Footer = () => {
     return (
-        <footer className='bg-white d-flex justify-content-around '>
+        <footer className='bg-white d-flex justify-content-around mt-5'>
             <div className='pt-3 text-center'>
                 <img src={logo} alt="" />
                 <p>Copyright © 2020 Mi - Salud.</p>
