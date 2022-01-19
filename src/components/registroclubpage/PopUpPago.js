@@ -4,6 +4,7 @@ import logoPrincipal from './icons/logoPrincipal.png';
 import logoTarjeta from './icons/logoTarjeta.png';
 import logoTarjetaMC from './icons/logoMasterCard.png';
 import logoVisa from './icons/logoVisa.png';
+import logoAmerican from './icons/logoAmerican.png';
 import closeIcon from './icons/closeIcon.png';
 
 
@@ -24,6 +25,11 @@ export const PopUpPago = () => {
             if (valueTarjeta.substring(0, 2) === "51" || valueTarjeta.substring(0,2) === "55") {
                 console.log("Es mastercard");
                 setTarjeta('2');
+            }
+
+            if (valueTarjeta.substring(0, 2) === "34" || valueTarjeta.substring(0,2) === "37") {
+                console.log("Es American");
+                setTarjeta('3');
             }
         }
        
@@ -100,7 +106,7 @@ export const PopUpPago = () => {
                                 <img src={logoTarjeta} alt='tarjeta' />
                             </div>
                             <div className='ms-1' style={{border: '1px solid #C4C4C4', borderRadius:'5px', display:"flex", backgroundColor:"white"}}>
-                                <img src={tarjeta === '1' ? logoVisa : logoTarjetaMC} alt='tarjeta' style={{width:"3.8rem", margin:"auto"}}  />
+                                <img src={tarjeta === '1' ? logoVisa : tarjeta === '2' ? logoTarjetaMC : logoAmerican} alt='tarjeta' style={{width:"3.8rem", margin:"auto"}}  />
                             </div>
                             <input type='text' id='input-tarjeta' className='form-control ms-2' name='tarjeta' placeholder='Ingrese los números de la tarjeta' pattern='^(?:4\d([\- ])?\d{6}\1\d{5}|(?:4\d{3}|5[1-5]\d{2}|6011)([\- ])?\d{4}\2\d{4}\2\d{4})$' title='Ingrese un número de tarjeta válido' maxLength='16' required></input>
                         </div>
