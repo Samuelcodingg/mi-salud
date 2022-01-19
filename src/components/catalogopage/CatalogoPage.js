@@ -121,13 +121,13 @@ export const CatalogoPage = () => {
                             <a href="#todas-categorias" value='1' data-bs-toggle="collapse" data-bs-target="todas-categorias" aria-controls="todas-categorias">Todas las categorías</a><br></br>
                             <a href="#cuidado-personal" value='2' data-bs-toggle="collapse" data-bs-target="cuidado-personal" aria-controls="cuidado-personal">Cuidado Personal</a><br></br>
                             <a href="#cuidado-infantil" value='3' data-bs-toggle="collapse" data-bs-target="cuidado-infantil" aria-controls="cuidado-infantil">Cuidado Infantil</a><br></br>
-                            <a href="#collapse4" data-bs-toggle="collapse" data-bs-target="collapse4" aria-controls="collapse4">Categoría 4</a><br></br>
+                            {/* <a href="#collapse4" data-bs-toggle="collapse" data-bs-target="collapse4" aria-controls="collapse4">Categoría 4</a><br></br>
                             <a href="#collapse5" data-bs-toggle="collapse" data-bs-target="collapse5" aria-controls="collapse5">Categoría 5</a><br></br>
                             <a href="#collapse6" data-bs-toggle="collapse" data-bs-target="collapse6" aria-controls="collapse6">Categoría 6</a><br></br>
                             <a href="#collapse7" data-bs-toggle="collapse" data-bs-target="collapse7" aria-controls="collapse7">Categoría 7</a><br></br>
                             <a href="#collapse8" data-bs-toggle="collapse" data-bs-target="collapse8" aria-controls="collapse8">Categoría 8</a><br></br>
                             <a href="#collapse9" data-bs-toggle="collapse" data-bs-target="collapse9" aria-controls="collapse9">Categoría 9</a><br></br>
-                            <a href="#collapse10" data-bs-toggle="collapse" data-bs-target="collapse10" aria-controls="collapse10">Categoría 10</a><br></br>
+                            <a href="#collapse10" data-bs-toggle="collapse" data-bs-target="collapse10" aria-controls="collapse10">Categoría 10</a><br></br> */}
                         </div>
                     </div>
                 </div>
@@ -140,6 +140,7 @@ export const CatalogoPage = () => {
                                     <div className='col-md-4 mb-3'>
                                         <CardProduct
                                             key={product.id}
+                                            id={product.id}
                                             img={product.smallImg}
                                             title={product.name}
                                             titleColor={'black'}
@@ -153,6 +154,7 @@ export const CatalogoPage = () => {
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
+                                        id={product.id}
                                         img={product.smallImg}
                                         title={product.name}
                                         titleColor={'black'}
@@ -166,6 +168,7 @@ export const CatalogoPage = () => {
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
+                                        id={product.id}
                                         img={product.smallImg}
                                         title={product.name}
                                         titleColor={'black'}
@@ -179,6 +182,7 @@ export const CatalogoPage = () => {
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
+                                        id={product.id}
                                         img={product.smallImg}
                                         title={product.name}
                                         titleColor={'black'}
@@ -192,6 +196,7 @@ export const CatalogoPage = () => {
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
+                                        id={product.id}
                                         img={product.smallImg}
                                         title={product.name}
                                         titleColor={'black'}
@@ -215,6 +220,7 @@ export const CatalogoPage = () => {
                                     <div className='col-md-4 mb-3'>
                                         <CardProduct
                                             key={product.id}
+                                            id={product.id}
                                             img={product.smallImg}
                                             title={product.name}
                                             titleColor={'black'}
@@ -228,6 +234,7 @@ export const CatalogoPage = () => {
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
+                                        id={product.id}
                                         img={product.smallImg}
                                         title={product.name}
                                         titleColor={'black'}
@@ -241,6 +248,7 @@ export const CatalogoPage = () => {
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
+                                        id={product.id}
                                         img={product.smallImg}
                                         title={product.name}
                                         titleColor={'black'}
@@ -254,6 +262,7 @@ export const CatalogoPage = () => {
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
+                                        id={product.id}
                                         img={product.smallImg}
                                         title={product.name}
                                         titleColor={'black'}
@@ -267,6 +276,7 @@ export const CatalogoPage = () => {
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
+                                        id={product.id}
                                         img={product.smallImg}
                                         title={product.name}
                                         titleColor={'black'}
@@ -288,6 +298,7 @@ export const CatalogoPage = () => {
                                     <div className='col-md-4 mb-3'>
                                         <CardProduct
                                             key={product.id}
+                                            id={product.id}
                                             img={product.smallImg}
                                             title={product.name}
                                             titleColor={'black'}
@@ -301,6 +312,7 @@ export const CatalogoPage = () => {
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
+                                        id={product.id}
                                         img={product.smallImg}
                                         title={product.name}
                                         titleColor={'black'}
@@ -314,6 +326,7 @@ export const CatalogoPage = () => {
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
+                                        id={product.id}
                                         img={product.smallImg}
                                         title={product.name}
                                         titleColor={'black'}
@@ -327,6 +340,7 @@ export const CatalogoPage = () => {
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
+                                        id={product.id}
                                         img={product.smallImg}
                                         title={product.name}
                                         titleColor={'black'}
@@ -340,6 +354,7 @@ export const CatalogoPage = () => {
                                 <div className='col-md-4 mb-3'>
                                     <CardProduct
                                         key={product.id}
+                                        id={product.id}
                                         img={product.smallImg}
                                         title={product.name}
                                         titleColor={'black'}

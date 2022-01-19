@@ -4,6 +4,9 @@ import americanLogo from './american-logo.png';
 import dinnersLogo from './dinners-logo.png';
 import mastercardLogo from './mastercard-logo.png';
 import visaLogo from './visa-logo.png';
+import Swal from 'sweetalert2';
+import { Redirect } from 'react-router-dom';
+
 
 export const PagarPage = () => {
 
@@ -14,6 +17,40 @@ export const PagarPage = () => {
     });
 
     const precioProductos = getPrecioTotal();
+
+    const clickPagar = () => {
+
+        if(valuesPedido.recepcion === '' || valuesPedido.horario === '' || valuesPedido.pago === '') {
+            Swal.fire({
+                title: 'Error',
+                text: 'Debe completar todos los campos',
+                icon: 'error'
+            });
+
+            return;
+        }
+
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "¡No podrá revertir esta acción!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Sí, pagar!'
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire(
+                    '¡Pagado!',
+                    'Su pedido ha sido pagado.',
+                    'success'
+                );
+
+                window.location.href = '/';
+            }
+        });
+        
+    }
 
     return (
         <div className='container mt-4'>
@@ -184,7 +221,10 @@ export const PagarPage = () => {
                     </div>
                 </div>
                 <div className='text-center'>
-                    <button className='boton btn-rounded bg-principal text-white px-5'>
+                    <button 
+                        className='boton btn-rounded bg-principal text-white px-5'
+                        onClick={clickPagar}
+                    >
                         Confirmar compra
                     </button>
                 </div>
