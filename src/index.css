@@ -261,3 +261,28 @@ body {
   right: 100px;
   
 }
+
+/*Homepage*/
+
+.bg-seccion{
+  width: 42px;
+  height: 15px;
+  left: calc(50% - 42px/2 - 610px);
+  top: 672px;
+  background: rgba(0, 177, 169, 0.5);
+  transform: rotate(-90deg);
+}
+.bg-seccion2{
+  width: 90rem;
+  height: 15px;
+  background: rgba(0, 177, 169, 0.5);
+  transform: rotate(-180deg);
+}
+
+.text-seccion{
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1rem;
+}
