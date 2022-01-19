@@ -40,3 +40,11 @@ export const deleteProductoCarrito = (nombre) => {
 
     localStorage.setItem('carrito', JSON.stringify(productos));
 }
+
+export const addProductoCarrito = (producto) => {
+    const carrito = localStorage.getItem('carrito');
+    const carritoJSON = JSON.parse(carrito);
+    carritoJSON.push(producto);
+
+    localStorage.setItem('carrito', JSON.stringify(carritoJSON));
+}
