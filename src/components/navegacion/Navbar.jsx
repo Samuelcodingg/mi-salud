@@ -351,6 +351,7 @@ const Navbar = () => {
                                             <div className="d-flex justify-content-evenly mt-4">
                                                 <Link
                                                     to="/catalogo-page"
+                                                    onClick={() => setCartOpened(!cartOpened)}
                                                 >
                                                     <button className="boton btn-rounded bg-white text-dark">
                                                         Seguir comprando
@@ -358,6 +359,7 @@ const Navbar = () => {
                                                 </Link>
                                                 <Link
                                                     to="/pagar"
+                                                    onClick={() => setCartOpened(!cartOpened)}
                                                 >
                                                     <button className="boton btn-rounded px-5 bg-principal text-white">Pagar</button>
                                                 </Link>
