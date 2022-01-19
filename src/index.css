@@ -229,6 +229,10 @@ body {
   font-weight: 500;
 }
 
+.fondo-pago-popup{
+  background-image: url(components/registroclubpage/fondoValidacionTarjeta.png);
+}
+
 
 
 /* clubpage */
