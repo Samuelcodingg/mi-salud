@@ -46,7 +46,7 @@ const Slideshow = ({children, controles=true, autoplay=true, velocidad ="6000", 
             slideshow.current.style.transform = `translateX(-${tamanoSlide}px)`;
 
             setTimeout (()=>{
-                slideshow.current.style.transition = '${velocidad}ms ease-out all';
+                slideshow.current.style.transition = `${velocidad}ms ease-out all`;
                 slideshow.current.style.transform = `translateX(0)`;
             },30);
 

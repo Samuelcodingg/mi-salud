@@ -8,7 +8,7 @@ import imgvisa from './visa.png';
 import imgmaster from './logos_mastercard.png';
 import imgamer from './fontisto_american-express.png';
 import imgdiners from './logos_dinersclub.png';
-import { getProduct, getProductsByTipo } from '../../helpers/productOperations';
+import { getProductsByTipo } from '../../helpers/productOperations';
 import { productos } from '../../db/productos';
 
 export const HomePage = () => {
@@ -116,7 +116,7 @@ export const HomePage = () => {
                 <section className=' mt-3'>
                     <div className='d-flex'>
                         <div className='bg-seccion'></div>
-                        <p className='text-seccion pe-2'>Cuidado infantil</p>
+                        <p className='text-seccion pe-1'>Cuidado infantil</p>
                         <div className='bg-seccion2'></div>
                     </div>
                     <div className='mx-4 my-5'>
@@ -162,8 +162,8 @@ export const HomePage = () => {
                 </section>
 
                 <section className='my-5'>
-                    <div className='d-flex px-5 justify-content-around'>
-                        <p>Formas de pago</p>
+                    <div className='d-flex px-5 justify-content-around align-items-center '>
+                        <p >Formas de pago</p>
                         <img src={imgvisa} alt="" />
                         <img src={imgmaster} alt="" />
                         <img src={imgamer} alt="" />
