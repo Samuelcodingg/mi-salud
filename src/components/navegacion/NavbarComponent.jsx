@@ -40,8 +40,8 @@ export function NavbarComponent() {
                     <img src={imgLogoIcon} alt="" /><span className='ms-2 align-middle'>Ofertas del dia</span></Link>
                 <a className='txt-nav mg-left' href="#">
                     <img src={imgLogoIcon} alt="" /><span className='ms-2 align-middle'>Cuidado Personal</span></a>
-                <a className='txt-nav mg-left' href="#">
-                    <img src={imgLogoIcon} alt="" /><span className='ms-2 align-middle'>Cuidado Infantil</span></a>
+                <Link to="/catalogo-page#cuidado-infantil" className='txt-nav mg-left' href="#">
+                    <img src={imgLogoIcon} alt="" /><span className='ms-2 align-middle'>Cuidado Infantil</span></Link>
             </nav>
         </React.Fragment>
     )

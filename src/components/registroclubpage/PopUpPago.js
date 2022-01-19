@@ -116,11 +116,11 @@ export const PopUpPago = () => {
                         </div>
                         <div className='col-sm-6'>
                             <p><i>Código de seguridad</i></p>
-                            <input type='text' className='form-control' title='Ingrese un código de seguridad válido' placeholder='Número' maxLength='3' pattern='[0-9]' required></input>
+                            <input type='text' className='form-control' title='Ingrese un código de seguridad válido' placeholder='Número' maxLength='3' required></input>
                         </div>
                     </div>
 
-                    <div className='row mt-3'>
+                    {/* <div className='row mt-3'>
                         <p><i>Tipo de tarjeta</i></p>
                         <select className='form-select ms-2' required>
                             <option selected>Seleccione tipo</option>
@@ -128,7 +128,7 @@ export const PopUpPago = () => {
                             <option value='tipo2'>tipo2</option>
                             <option value='tipo3'>tipo3</option>
                         </select>
-                    </div>
+                    </div> */}
 
                     <div className='row mt-4 ps-4'>
                         <div class="form-check">
