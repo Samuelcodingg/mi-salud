@@ -101,7 +101,7 @@ export const ClubPage = () => {
             <div className='container mt-5 border-top border-dark'>
                 <div className={`row rounded border-solid mt-5 p-5 h-auto ${ window.innerWidth > 576 ? 'banner-height' : '' }`} >
                     <div className='col-sm-7'>
-                        <h3 className='text-center'>¿Cómo acumulo SaludPuntos</h3>
+                        <h3 className='text-center'>¿Cómo acumulo SaludPuntos?</h3>
                         <div className='d-flex mt-0 mt-sm-4'>
                             <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                 <rect width="50" height="50" fill="url(#pattern0)" />
