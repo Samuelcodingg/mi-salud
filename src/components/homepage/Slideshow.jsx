@@ -31,7 +31,7 @@ const Slideshow = ({children, controles=true, autoplay=true, velocidad ="6000", 
             slideshow.current.addEventListener('transitionend',transicion);
         }
     
-    }
+    };
     
     const anterior = () => {
         if(slideshow.current.children.length > 0){
@@ -52,7 +52,7 @@ const Slideshow = ({children, controles=true, autoplay=true, velocidad ="6000", 
 
         }
         
-    }
+    };
 
     useEffect(()=>{
         if(autoplay){
