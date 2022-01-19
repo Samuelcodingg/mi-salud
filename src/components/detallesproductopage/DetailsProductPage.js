@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProduct, getProductsByTipo } from '../../helpers/productOperations';
+import { addProductoCarrito, getProduct, getProductsByTipo } from '../../helpers/productOperations';
 import { CardProduct } from '../ui/CardProduct';
 
 import logos_visa from './logos_visa.png';
@@ -17,6 +17,9 @@ export const DetailsProductPage = () => {
         description: '',
         price: '',
         bigImg: '',
+        img: '',
+        precio: '',
+        nombre: '',
         smallImg: ''
     });
 
@@ -30,9 +33,14 @@ export const DetailsProductPage = () => {
         setAmount(event.target.value);
     };
 
+    const agregarProducto = (product) => {
+        addProductoCarrito(product);
+        window.location.reload();
+    }
+
     useEffect(() => {
         const product = getProduct(id);
-        setProduct(product);
+        setProduct({...product, img: `${process.env.PUBLIC_URL}/assets/products/${product.smallImg}.png`, nombre: product.name, precio: product.price});
 
         const relacionados = getProductsByTipo(product.tipo);
         setRelacionados(relacionados);
@@ -50,7 +58,7 @@ export const DetailsProductPage = () => {
                         </div>
                         <div className='col-sm-6'>
                             <h1 className='color-principal text-uppercase'>{name}</h1>
-                            <h1 className='text-danger mt-4'>{price}</h1>
+                            <h1 className='text-danger mt-4'>S/ {price}</h1>
                             <h3 className='fw-bold mt-4'>DESCRIPCION</h3>
                             <p className='text-secondary fs-5'>
                                 {description}
@@ -73,9 +81,12 @@ export const DetailsProductPage = () => {
                                         </button>
                                     </div>
                                     <div className='col-7'>
-                                        <button className="btn btn-danger w-100">
+                                        <button 
+                                            className="btn btn-danger w-100"
+                                            onClick={() => agregarProducto(product)}
+                                        >
                                             Agregar al carrito &nbsp;
-                                            <i class="fas fa-shopping-cart"></i>
+                                            <i className="fas fa-shopping-cart"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -93,6 +104,7 @@ export const DetailsProductPage = () => {
                                 <div className='col-sm-3'>
                                     <CardProduct
                                         key={product.id}
+                                        id={product.id}
                                         img={product.smallImg}
                                         title={product.name}
                                         titleColor={'#00B1A9'}
