@@ -9,6 +9,7 @@ import logoLogin from './logoLogin.png';
 import { Link } from 'react-router-dom';
 import { getUserByEmailAndPassword, isAuthenticated, registerUser } from '../../helpers/userOperations';
 import { deleteProductoCarrito, getPrecioTotal, getProductosCarrito } from '../../helpers/productOperations';
+import Swal from 'sweetalert2';
 
 
 const Navbar = () => {
@@ -46,6 +47,17 @@ const Navbar = () => {
 
     const clickLogin = (e) => {
         e.preventDefault();
+
+        if(valuesLogin.email === '' || valuesLogin.password === '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Por favor, llena todos los campos'
+            })
+        
+            return;
+        }
+
         const user = getUserByEmailAndPassword(valuesLogin.email, valuesLogin.password);
         if (user) {
             localStorage.setItem('user', JSON.stringify(user));
@@ -55,6 +67,17 @@ const Navbar = () => {
 
     const clickRegister = (e) => {
         e.preventDefault();
+
+        if(valuesRegister.email === '' || valuesRegister.password === '' || valuesRegister.nombre === '' || valuesRegister.ap_paterno === '' || valuesRegister.ap_materno === '' || valuesRegister.celular === '' || valuesRegister.dni === '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Por favor, llena todos los campos'
+            })
+
+            return;
+        }
+
         registerUser(valuesRegister);
         localStorage.setItem('user', JSON.stringify(valuesRegister));
         window.location.reload();
@@ -311,7 +334,7 @@ const Navbar = () => {
                                             {
                                                 productosCarrito.map((producto, index) => {
                                                     return (
-                                                        <div key={index} className='d-flex justify-content-evenly align-items-center '>
+                                                        <div key={index} className='d-flex justify-content-between align-items-center '>
                                                             <div>
                                                                 {/* put an example image */}
                                                                 <img src={producto.img} alt="product" style={{ width: '80px', height: '80px' }} />
