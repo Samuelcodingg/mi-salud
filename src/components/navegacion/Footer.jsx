@@ -38,7 +38,7 @@ const Footer = () => {
                     <p>!Mantente al dia!</p>
                     <div className='align-self-center'>
                         <form class="d-flex">
-                            <input class="form-control form-control-sm mx-2" type="text" placeholder="e-amil" aria-label=".form-control-sm example"></input>
+                            <input class="form-control form-control-sm mx-2" type="text" placeholder="e-mail" aria-label=".form-control-sm example"></input>
                             <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
                         </form>
                     </div>
